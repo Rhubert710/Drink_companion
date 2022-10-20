@@ -1177,7 +1177,7 @@
           <script>
             drink_list.innerHTML = allDrinks.map((drink) => (`
   
-              <div class='a-card' style="display:flex;" onClick = "drinkClick(${drink.idDrink})">
+              <div class='a-card' onClick = "drinkClick(${drink.idDrink})">
   
                   <img class='drink-img' src="${drink.strDrinkThumb}" alt="${drink.strDrink}" 
                       style="width:19vmin; aspect-ratio:1;"/>
@@ -1257,10 +1257,22 @@ h1{
     
     #drink_list{
 
-    width: 80%;
+    width: 82%;
 
-    display: grid;
-    grid-template-columns: 6fr 40fr;
+    display: flex;
+    flex-wrap: wrap;
+
+    row-gap: 14px;
+    justify-content: space-between;
+    }
+
+    .a-card{
+      display: flex;
+      min-width: 499px;
+
+      border: 1px solid rgba(208, 207, 207, 0.61);
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
     }
 
     
@@ -1316,8 +1328,7 @@ h1{
     
         margin: 0px;
         padding: 0px;
-    
-        overflow: scroll;
+
     }
     
     #bar{
@@ -1337,7 +1348,7 @@ h1{
         position: relative;
     
     }
-    ::-webkit-scrollbar {
+    #bar::-webkit-scrollbar {
         width: 0;  /* Remove scrollbar space */}
     
     
