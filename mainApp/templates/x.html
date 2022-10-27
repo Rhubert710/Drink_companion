@@ -975,45 +975,27 @@
         </header>
 
 <!-- PAGE - mainPage -->
-        <div id="mainPage">
-
-            <!-- <div id="bg_img" ></div> -->
-            <div id="x"><img src="drinks_background_blur.png" alt="" id="bg_img"></div>
-
-            <h1>Drink Companion</h1>
-
-            <input id="search-bar" type="text">
-
-            <!-- Top Drinks -->
-            <div id="topDrinks">
-
-              <div class="secondary">Most Popular</div>
-
-              <div id='outer'>
-
-                  <div id='prevNav' class='navButton' onClick="scroll_topDrinks('Left')" >&#60;</div>
-          
-                  <div id="bar"></div> <!--js generated-->
-                    <script>document.querySelector('#bar').innerHTML = popD.map((drink)=>(`
-                        <div class='cardd'>
-                
-                            <img class='card_img' src=${drink.strDrinkThumb} alt="" />
-                
-                            <div class='drinkName'>${drink.strDrink}</div>
-                
-                        </div>
-                    `))</script>
-
-                  <div id='nextNav' class='navButton' onClick="scroll_topDrinks('Right')" >&#62;</div>
-          
-              </div>
-          </div>
-
-          <!-- All Drinks -->
-          
-
         
+        <div id="drink-page">
+
+            <h1>Drink Name</h1>
+
+            <img id="drink-page-img" src="https://www.thecocktaildb.com/images/media/drink/b522ek1521761610.jpg" alt="drink-image">
+
         </div>
+        <style>
+            #drink-page{
+
+                display: flex;
+                flex-direction: column;
+
+                align-items: center;
+            }
+            #drink-page-img{
+                width:400px;
+            }
+        </style>
+
     </div>
     
 </body>

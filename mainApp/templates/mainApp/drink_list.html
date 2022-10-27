@@ -1,0 +1,49 @@
+<div id='drink_list'>
+
+    <script>
+      let current_letter = '';
+
+      for (const drink of allDrinks){
+
+          // add letter
+          if(current_letter != drink.strDrink[0].toUpperCase()){
+
+            current_letter = drink.strDrink[0].toUpperCase();
+
+            const newDiv = document.createElement("div");
+            newDiv.classList.add('letter');
+            newDiv.innerHTML = current_letter;
+            drink_list.appendChild(newDiv);
+
+          }
+
+          // add drink
+          const drinkDiv = document.createElement("div");
+
+          drinkDiv.classList.add('a-card')
+          drinkDiv.onclick = `drinkClick(${drink.idDrink})`
+
+          drinkDiv.innerHTML = `
+
+                <img class='drink-img' src="${drink.strDrinkThumb}" alt="${drink.strDrink}" 
+                    style="width:19vmin; aspect-ratio:1;"/>
+
+                <div id="${drink.idDrink}" class='drink-details'>
+                    <strong>${drink.strDrink}</strong>
+                    <div style="margin-top:auto;">${drink.ingredients.join(", ")}</div>
+                </div>
+          `;
+
+          drink_list.appendChild(drinkDiv);
+            
+      }
+      </script>
+      <style>
+        .letter{
+
+          font-size: 54px;
+          /* font-family:'Barlow Condensed'; */
+
+          width: 100%;
+        }
+      </style>
