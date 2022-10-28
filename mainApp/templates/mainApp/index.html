@@ -1292,5 +1292,18 @@ const z = document.querySelector("#bar");
 
 }
 
+function navigate_to_drink_page(drinkId) {
+
+  //first, fetch omments and if userlkjed ir dsked drink
+
+  history.pushState({}, "", `/?drink=${drinkId}`)
+
+  const drink = allDrinks.find((i)=>(i.idDrink == drinkId))
+  
+
+
+  
+}
+
 
     </script>

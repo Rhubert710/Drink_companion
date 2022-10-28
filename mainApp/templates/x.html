@@ -958,12 +958,22 @@
        </script>
 
     <div id="app">
+        {% load static %}
 
         <!-- component  header -->
-        <header id="header" style="max-width: 99%; display:flex">
+        <header id="header" style="max-width: 99%; display:flex;">
             
             <!-- Hamburger -->
             <div >E</div>
+
+            <div style="
+                    position: absolute;
+                    top:8px; left: 50%; 
+                    transform: translate(-50%, 0);
+                    font-size: 19px;
+                    font-weight: bold;
+                    "
+            >Drink Companion</div>
             
             <!-- login - top-right -->
             <top-right 
@@ -975,12 +985,26 @@
         </header>
 
 <!-- PAGE - mainPage -->
-        
-        <div id="drink-page">
+<div id="mainPage">
+
+    <!-- <h1>Drink Companion</h1> -->
+
+    <input id="search-bar" type="text" placeholder="search....">
+
+    <!-- drink-page -->
+        <div id="drink-page"><br>
+
+            
+            <br>
+            
+            <img id="drink-page-img" src="https://www.thecocktaildb.com/images/media/drink/b522ek1521761610.jpg" alt="drink-image">
+
+            <div id="like_buttons">
+                <img class="like_btn" src="{% static  'thumb_down.webp' %}" alt="">
+                <img class="like_btn" src="static/thumb-up.webp" alt="">
+            </div>
 
             <h1>Drink Name</h1>
-
-            <img id="drink-page-img" src="https://www.thecocktaildb.com/images/media/drink/b522ek1521761610.jpg" alt="drink-image">
 
         </div>
         <style>
@@ -993,6 +1017,19 @@
             }
             #drink-page-img{
                 width:400px;
+                aspect-ratio: 1;
+            }
+
+            #like_buttons{
+                width:400px;
+                display: flex;
+
+                justify-content: end;
+                margin-top: 5px;
+            }
+
+            .like_btn{
+                width: 40px;
             }
         </style>
 
@@ -1062,6 +1099,10 @@ h1{
           font-size:large;
           padding:4px;
           padding-left:14px;
+    }
+    #search-bar::placeholder{
+        font-style: italic;
+        opacity: .4;
     }
     
     #drink_list{
