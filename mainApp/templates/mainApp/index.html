@@ -960,7 +960,7 @@
     <div id="app">
 
         <!-- component  header -->
-        <header id="header" style="max-width: 99%; display:flex">
+        <header id="header" style="max-width: 99%; display:flex;">
             
             <!-- Hamburger -->
             <div >E</div>
@@ -978,7 +978,7 @@
         <div id="mainPage">
 
             <!-- <div id="bg_img" ></div> -->
-            <div id="x"><img src="drinks_background_blur.png" alt="" id="bg_img"></div>
+            <div id="x"><img src="static/drinks_background_blur.png" alt="" id="bg_img"></div>
 
             <h1>Drink Companion</h1>
 
@@ -1011,7 +1011,7 @@
 
           <!-- All Drinks -->
           
-
+          {% include "mainApp/drink_list.html" %}
         
         </div>
     </div>
@@ -1082,45 +1082,7 @@ h1{
           padding-left:14px;
     }
     
-    #drink_list{
-
-    width: 82%;
-
-    display: flex;
-    flex-wrap: wrap;
-
-    row-gap: 14px;
-    justify-content: space-between;
-    }
-
-    .a-card{
-      display: flex;
-      width: 480px;
-
-      border: 1px solid rgba(208, 207, 207, 0.61);
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-
-    }
-
-    .drink-img{
-      border: 1px solid black;
-      /* margin: 18px; */
-
-      width: 143px;
-    }
-
-    .drink-details{
-
-      /* padding-left: 19px; */
-
-      display: flex;
-      flex-direction: column;
-
-      padding: 19px;
-      padding-bottom: 8px;
-
-
-    }
+    
 
     
 

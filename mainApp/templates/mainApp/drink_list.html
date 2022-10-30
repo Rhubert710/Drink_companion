@@ -20,7 +20,7 @@
           // add drink
           const drinkDiv = document.createElement("div");
 
-          drinkDiv.classList.add('a-card')
+          drinkDiv.classList.add('a-card', 'a-card_hidden')
           drinkDiv.onclick = `drinkClick(${drink.idDrink})`
 
           drinkDiv.innerHTML = `
@@ -38,12 +38,81 @@
             
       }
       </script>
+
       <style>
+
+        #drink_list{
+
+            width: 82%;
+
+            display: flex;
+            flex-wrap: wrap;
+
+            row-gap: 14px;
+            justify-content: space-between;
+        }
+
         .letter{
 
-          font-size: 54px;
-          /* font-family:'Barlow Condensed'; */
-
-          width: 100%;
+            font-size: 54px;
+            width: 100%;
         }
+
+        .a-card{
+          transition: 1.4s;
+          display: flex;
+          width: 480px;
+          border: 1px solid rgba(208, 207, 207, 0.61);
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+          opacity: 1;
+        }
+
+        .a-card_hidden{
+
+          transition: 1.4s;
+          transform: translateX(-100%);
+
+          opacity: 0;
+        }
+
+        .drink-img{
+          border: 1px solid black;
+          /* margin: 18px; */
+
+          width: 143px;
+        }
+
+        .drink-details{
+
+          /* padding-left: 19px; */
+
+          display: flex;
+          flex-direction: column;
+
+          padding: 19px;
+          padding-bottom: 8px;
+
+        }
+
       </style>
+
+      <script>
+
+        const observer = new IntersectionObserver((a_cards)=>{
+          a_cards.forEach((card)=>{
+
+            console.log(card.isIntersecting);
+            if (card.isIntersecting){
+              
+              card.target.classList.remove('a-card_hidden');
+
+            }
+
+            // else
+            // card.target.classList.add('a-card_hidden');
+          
+          })
+        },{threshold:.1})
+
+        document.querySelectorAll('.a-card').forEach((el)=> observer.observe(el));
+      </script>
