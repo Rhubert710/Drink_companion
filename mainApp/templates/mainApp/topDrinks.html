@@ -1,0 +1,165 @@
+    <!-- Top Drinks -->
+    <div id="topDrinks">
+
+        <div class="secondary">Most Popular</div>
+  
+        <div id='outer'>
+  
+            <div id='prevNav' class='navButton' onClick="scroll_topDrinks('Left')" >&#60;</div>
+    
+            <div id="bar"></div> <!--js generated-->
+              <script>document.querySelector('#bar').innerHTML = popD.map((drink)=>(`
+                  <div class='cardd'>
+          
+                      <img class='card_img' src=${drink.strDrinkThumb} alt="" />
+          
+                      <div class='drinkName'>${drink.strDrink}</div>
+          
+                  </div>
+              `))</script>
+  
+            <div id='nextNav' class='navButton' onClick="scroll_topDrinks('Right')" >&#62;</div>
+    
+        </div>
+    </div>
+
+    <style> <!--top drinks-->
+
+        #topDrinks{
+            width: 99%;
+        
+        }
+        .secondary{
+    
+          margin-left: 44px;
+          font-size: 44px;
+    
+          font-family:'Barlow Condensed';
+        }
+    
+        #outer{
+        
+            display: flex;
+            align-items: center;
+        
+            margin: 0px;
+            padding: 0px;
+    
+        }
+        
+        #bar{
+        
+            display: flex;
+            gap: 4px;
+            /* margin-inline: 40px; */
+            /* width: 84%; */
+            max-width: 1200px;
+            width: 84vw;
+            /* height: 400px; */
+            /* height: 46vmin; */
+            height: 16.5rem;
+            overflow-x: scroll;
+            align-items: center;
+            scroll-behavior: smooth;
+            position: relative;
+        
+        }
+        #bar::-webkit-scrollbar {
+            width: 0;  /* Remove scrollbar space */}
+        
+        
+        
+        .cardd{
+            
+            display: flex;
+            flex-direction: column;
+        
+            align-items: center;
+        }
+        
+        .card_img{
+        
+            /* height: 299px; */
+            transition:.4s;
+        
+            border-radius:4px;
+            /* height: 14rem; */
+        
+            /* width: 29vmin; */
+            /* height: 24vmin; */
+    
+            /* width: 199px; */
+            width: 12rem;
+        
+        }
+        
+        .card_img:hover{
+        
+            transition:.4s;
+            /* width: 240px; */
+        
+            width:14rem;
+            /* height: 34vmin; */
+        
+        }
+        .card_img:hover + .drinkName{
+        
+            transition: 1.8s;
+            opacity: 1;
+        
+            /* font-size: large; */
+        }
+        
+        .drinkName{
+        
+            opacity: 0;
+            transition: .4s;
+        
+            /* font-size: 0rem; */
+            text-align: center;
+        
+            margin: .2rem;
+        
+        }
+        
+        .navButton{
+            font-size: 29px;
+            /* font-size: 6vmin; */
+            background-color: rgba(219, 219, 219, 0.753);
+            border-radius: 50%;
+            position:relative;
+            bottom: .9rem;
+            padding-inline: 12px; /*2vmin;*/
+            padding-bottom: 5px;
+            /* padding-bottom: 1vmin; */
+            transition: .2s;
+            cursor:default;
+            z-index: 99;
+        }
+        
+        .navButton:hover{
+        
+            transform: scale(1.1);
+            transition: .28s;
+        }
+        
+        #prevNav{
+            left: 2vmin;}
+        
+        #nextNav{
+            right: 16px;}
+        </style>
+    
+    
+        <script> //<!--top Drinks-->
+    
+    
+    function scroll_topDrinks(direction){
+    
+    const z = document.querySelector("#bar");
+    (direction=='Right') ? z.scrollLeft += (270) : z.scrollLeft -= (270);
+    
+    }
+    
+
+</script>

@@ -1,0 +1,15 @@
+<!-- component  header -->
+<header id="header" style="max-width: 99%; display:flex;">
+            
+    <!-- Hamburger -->
+    <div >E</div>
+    
+    <!-- login - top-right -->
+    <top-right 
+        style = "margin:8px; margin-left:auto; cursor:pointer;"
+        onClick= "document.querySelector('#loginModal').style.display = 'block'"
+        >
+        { user ? 'userName' : 'login / sign-up'}
+    </top-right>
+</header>
+

@@ -1,0 +1,69 @@
+
+
+
+<!-- PAGE - mainPage -->
+<div id="mainPage">
+
+    <!-- logo -->
+    <div id="mainLogo"><img src="static/drinks_background_blur.png" alt="" id="bg_img"></div>
+
+    <!-- title -->
+    <h1>Drink Companion</h1>
+
+    <!-- search bar -->
+    <input id="search-bar" type="text">
+    
+    <!-- Top Drinks -->
+    {% include "mainApp/topDrinks.html" %}
+
+    <!-- All Drinks -->
+    {% include "mainApp/drink_list.html" %}
+
+</div>
+
+<style>
+    h1{
+
+/* font-family: sans-serif; */
+font-size: 44px;
+
+}
+
+  #mainPage{
+
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      max-width: 1400px;
+      align-items: center;
+      
+  }
+  h1{margin-top: 0px;}
+
+  #bg_img{
+
+    height:164px;
+    width:499px;
+
+    /* background-image: url('drinks_background.png'); */
+    /* box-shadow: 0 0 8px 8px white inset; */
+  
+  z-index: 9;
+
+    /* background-size: cover; */
+  }
+  #mainLogo{
+    box-shadow: 0 0 8px 8px white inset;
+  z-index: -9;
+  }
+
+  #search-bar{
+      width:80vw;
+        max-width:44rem;
+        height:1.9rem;
+        border-radius:19px;
+        font-size:large;
+        padding:4px;
+        padding-left:14px;
+  }
+</style>
