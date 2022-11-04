@@ -1,0 +1,48 @@
+
+
+
+
+{% load static %}
+
+<!-- drink-page -->
+    <div id="drink-page"><br>
+
+        <input id="search-bar" type="text" placeholder="search....">
+        <br>
+        
+        <img id="drink-page-img" src="https://www.thecocktaildb.com/images/media/drink/b522ek1521761610.jpg" alt="drink-image">
+
+        <div id="like_buttons">
+            <img class="like_btn" src="{% static  'thumb_down.webp' %}" alt="">
+            <img class="like_btn" src="static/thumb-up.webp" alt="">
+        </div>
+
+        <h1>Drink Name</h1>
+
+    </div>
+    
+    <style>
+        #drink-page{
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+        }
+        #drink-page-img{
+            width:400px;
+            aspect-ratio: 1;
+        }
+
+        #like_buttons{
+            width:400px;
+            display: flex;
+
+            justify-content: end;
+            margin-top: 5px;
+        }
+
+        .like_btn{
+            width: 40px;
+        }
+    </style>
