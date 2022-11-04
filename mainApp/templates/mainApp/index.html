@@ -14,6 +14,7 @@
 <body>
 
     <script src="static/allDrinks.js"></script>
+    
 
     <div id="app">
 
@@ -25,7 +26,7 @@
         <div id="page_container">
 
           <!-- home page -->
-          {% include "mainApp/homePage.html" with display='none' %}
+          {% include "mainApp/homePage.html" with display='flex' %}
 
           <!-- drink page -->
           {% include "mainApp/drinkPage.html" %}
@@ -35,6 +36,8 @@
 
 
     </div>
+
+
     
 </body>
 </html>
@@ -57,11 +60,6 @@ body{
   /* overflow: scroll; */
   /* align-items: center; */
 }
-
-    
-    
-
-    
 
 
 
@@ -93,15 +91,32 @@ body{
 }
 </style>
 
-<script>
+    <script>
 
 function navigate_to_drink_page(drinkId) {
+
+  mainPage.style['opacity'] = '0';
     
     //first, fetch omments and if userlkjed ir dsked drink
-  
+
+  const drink = allDrinks.find((i)=>(i.idDrink == drinkId));
+  drinkPage_drinkName.innerHTML = drink.strDrink;
+
+  //drinkPage.style['display'] = 'flex';
+
+  setTimeout(()=>{
+
+    mainPage.style['display'] = 'none';
+
+    
+    drinkPage.style['opacity'] = '1';
+
     history.pushState({}, "", `/?drink=${drinkId}`)
+
+
+  },400);
+
   
-    const drink = allDrinks.find((i)=>(i.idDrink == drinkId))
     
   
   

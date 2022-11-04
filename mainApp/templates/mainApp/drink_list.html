@@ -23,8 +23,8 @@
           // add drink
           const drinkDiv = document.createElement("div");
 
-          drinkDiv.classList.add('a-card', 'a-card_hidden')
-          drinkDiv.onclick = `drinkClick(${drink.idDrink})`
+          drinkDiv.classList.add('a-card', 'a-card_hidden');
+          drinkDiv.onclick = ()=> navigate_to_drink_page(drink.idDrink);
 
           drinkDiv.innerHTML = `
 
@@ -119,4 +119,5 @@
         })
 
         document.querySelectorAll('.a-card').forEach((el)=> observer.observe(el));
+  
       </script>

@@ -5,7 +5,7 @@
 {% load static %}
 
 <!-- drink-page -->
-    <div id="drink-page"><br>
+    <div id="drinkPage"><br>
 
         <input id="search-bar" type="text" placeholder="search....">
         <br>
@@ -17,15 +17,18 @@
             <img class="like_btn" src="static/thumb-up.webp" alt="">
         </div>
 
-        <h1>Drink Name</h1>
+        <h1 id="drinkPage_drinkName">Drink Name</h1>
 
     </div>
     
     <style>
-        #drink-page{
+        #drinkPage{
 
             display: flex;
             flex-direction: column;
+
+            opacity:0;
+            transition: opacity 400ms;
 
             align-items: center;
         }
