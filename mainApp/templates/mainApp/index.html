@@ -100,7 +100,8 @@ function navigate_to_drink_page(drinkId) {
     //first, fetch omments and if userlkjed ir dsked drink
 
   const drink = allDrinks.find((i)=>(i.idDrink == drinkId));
-  drinkPage_drinkName.innerHTML = drink.strDrink;
+  
+  update_drinkPage(drink);
 
   //drinkPage.style['display'] = 'flex';
 
@@ -123,4 +124,12 @@ function navigate_to_drink_page(drinkId) {
     
 }
   
+function update_drinkPage(drink){
+
+  drinkPage_drinkName.innerHTML = drink.strDrink;
+  drinkPage_img.src = drink.strDrinkThumb;
+  drinkPage_ingredients.innerHTML = drink.ingredients.join(', ');
+  drinkPage_directions.innerHTML = drink.strInstructions;
+
+}
 </script>
