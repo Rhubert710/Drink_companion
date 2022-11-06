@@ -8,8 +8,9 @@
     <div id="drinkPage"><br>
 
         <input id="search-bar" type="text" placeholder="search....">
-        <br>
+        <br><br><!--search bar-->
         
+        <!-- img -->
         <img id="drinkPage_img" src="https://www.thecocktaildb.com/images/media/drink/b522ek1521761610.jpg" alt="drink-image">
 
         <div id="like_buttons">
@@ -17,14 +18,26 @@
             <img class="like_btn" src="static/thumb-up.webp" alt="">
         </div>
 
+        <!-- drink name -->
         <h1 id="drinkPage_drinkName">Drink Name</h1>
 
-        <div class='drinkPage_title'>Ingredients:
-            <span id='drinkPage_ingredients'></span> </div>
+        <!-- info container -->
+        <div id="drinkPage_container">
+
+            <div class='drinkPage_data'>Ingredients:
+                <span id='drinkPage_ingredients'></span> </div>
+
+            <br><div class='drinkPage_data'>Directions:
+                <span id='drinkPage_directions'></span> </div>
 
 
-        <br><div class='drinkPage_title'>Directions:
-            <span id='drinkPage_directions'></span> </div>
+            <br><div class='drinkPage_data'>Comments:</div>
+            <div id="comments_container"></div>
+
+            <br><textarea name="" id=""></textarea>
+            <button id="postComment_button">post</button>
+
+        </div>
 
 
 
@@ -59,15 +72,35 @@
             width: 29px;
         }
 
-        .drinkPage_title{
+        .drinkPage_data{
 
             font-size: 19px;
-            width: 650px;
+            /* width: 650px; */
 
             font-weight:bold;
         }
 
+        #drinkPage_container{
+
+            width: 96vw;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
         #drinkPage span{
             font-weight: normal;
+        }
+        #drinkPage textarea{
+           
+            height: 80px;
+        }
+        #postComment_button{
+
+            background-color: black;
+            border: none;
+            width:fit-content;
+            color: white;
+            align-self: flex-end;
         }
     </style>
