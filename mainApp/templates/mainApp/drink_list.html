@@ -6,6 +6,7 @@
     <script>
       let current_letter = '';
 
+
       for (const drink of allDrinks){
 
           // add letter
@@ -20,6 +21,12 @@
 
           }
 
+
+          // format ingredient list
+          let formatted_ingredients = drink.ingredients.map(i => `<a href="/i?i=${i.replace(' ','_')}">${i}</a>`)
+          
+          console.log(formatted_ingredients);
+
           // add drink
           const drinkDiv = document.createElement("div");
 
@@ -33,7 +40,7 @@
 
                 <div id="${drink.idDrink}" class='drink-details'>
                     <strong>${drink.strDrink}</strong>
-                    <div style="margin-top:auto;">${drink.ingredients.join(", ")}</div>
+                    <div style="margin-top:auto;">${formatted_ingredients.join(", ")}</div>
                 </div>
           `;
 
