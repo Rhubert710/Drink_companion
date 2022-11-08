@@ -127,8 +127,10 @@ function update_drinkPage(drink){
 
   drinkPage_drinkName.innerHTML = drink.strDrink;
   drinkPage_img.src = drink.strDrinkThumb;
-  drinkPage_ingredients.innerHTML = drink.ingredients.join(', ');
+  drinkPage_ingredients.innerHTML = drink.ingredients.map((ig, i) => drink.measures[i] + `<a href="">${ig}</a>` ).join(', ')
   drinkPage_directions.innerHTML = drink.strInstructions;
 
+  a='llkk'
+  console.log(a[-1]);
 }
 </script>
