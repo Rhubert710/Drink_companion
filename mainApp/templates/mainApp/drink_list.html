@@ -24,8 +24,6 @@
 
           // format ingredient list
           let formatted_ingredients = drink.ingredients.map(i => `<a href="/i?i=${i.replace(' ','_')}">${i}</a>`)
-          
-          console.log(formatted_ingredients);
 
           // add drink
           const drinkDiv = document.createElement("div");

@@ -102,7 +102,7 @@ function navigate_to_drink_page(drinkId) {
   
   update_drinkPage(drink);
 
-  //drinkPage.style['display'] = 'flex';
+  drinkPage.style['display'] = 'flex';
 
   setTimeout(()=>{
 
@@ -111,7 +111,7 @@ function navigate_to_drink_page(drinkId) {
     
     drinkPage.style['opacity'] = '1';
 
-    history.pushState({}, "", `/?drink=${drinkId}`)
+    history.pushState({page:'home'}, "", `/?drink=${drinkId}`)
 
 
   },400);
@@ -122,6 +122,25 @@ function navigate_to_drink_page(drinkId) {
   
     
 }
+
+function navigate_to_homePage() {
+
+  drinkPage.style['opacity'] = '0';
+  // mainPage.style['display'] = 'flex';
+
+setTimeout(()=>{
+
+  mainPage.style['display'] = 'flex';
+  drinkPage.style['display'] = 'none';
+  
+  mainPage.style['opacity'] = '1';
+
+  history.pushState({page:'drink'}, "", `/?drink=${drinkId}`)
+
+
+},400);
+
+}
   
 function update_drinkPage(drink){
 
@@ -130,7 +149,23 @@ function update_drinkPage(drink){
   drinkPage_ingredients.innerHTML = drink.ingredients.map((ig, i) => drink.measures[i] + `<a href="">${ig}</a>` ).join(', ')
   drinkPage_directions.innerHTML = drink.strInstructions;
 
-  a='llkk'
-  console.log(a[-1]);
 }
+
+window.addEventListener("popstate", event => {
+                // Grab the history state id
+                let prev_state = event.state;
+                // Show clicked id in console (just for fun)
+                console.log("stateId = ", prev_state);
+                // Visually select the clicked button/tab/box
+                // select_tab(stateId);
+                // Load content for this tab/page
+                // load_content(stateId);
+
+                if(prev_state.page='home'){
+
+                  navigate_to_homePage();
+
+                }
+            });
+
 </script>
