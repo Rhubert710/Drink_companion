@@ -132,10 +132,10 @@ setTimeout(()=>{
 
   mainPage.style['display'] = 'flex';
   drinkPage.style['display'] = 'none';
-  
-  mainPage.style['opacity'] = '1';
 
-  history.pushState({page:'drink'}, "", `/?drink=${drinkId}`)
+  setTimeout(()=> mainPage.style['opacity'] = '1', 7);
+
+  history.pushState({page:'drink'}, "", `/`)
 
 
 },400);
