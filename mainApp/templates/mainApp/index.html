@@ -92,6 +92,41 @@ body{
 
     <script>
 
+      const populatePage = {
+
+        drinkPage: (x)=>update_drinkPage(x)
+
+      }
+
+function navigate_to(newPage, props={}){
+
+  history.pushState({page:newPage}, "", `/${newPage}`)
+
+  loadPage(newPage);
+
+}
+
+
+function loadPage(newPage, props){
+
+  let newPage_div = document.querySelector(`#${newPage}`);
+
+  document.querySelectorAll('.page').forEach((page)=> page.style['opacity'] = '0')
+
+  populatePage[newPage](props);
+
+setTimeout(()=>{
+
+  document.querySelectorAll('.page').forEach((page)=> page.style['display'] = 'none')
+  newPage_div.style['display'] = 'flex';
+  
+  setTimeout(()=> newPage_div.style['opacity'] = '1', 7);
+
+
+},400);
+}
+
+
 function navigate_to_drink_page(drinkId) {
 
   mainPage.style['opacity'] = '0';
@@ -111,7 +146,7 @@ function navigate_to_drink_page(drinkId) {
     
     drinkPage.style['opacity'] = '1';
 
-    history.pushState({page:'home'}, "", `/?drink=${drinkId}`)
+    // history.pushState({page:'home'}, "", `/?drink=${drinkId}`)
 
 
   },400);
@@ -142,7 +177,12 @@ setTimeout(()=>{
 
 }
   
-function update_drinkPage(drink){
+function update_drinkPage(props){
+
+  console.log('wwwwwwwwww');
+console.log(props);
+
+  let drink = allDrinks.find((i)=>(i.idDrink == props.drinkId));
 
   drinkPage_drinkName.innerHTML = drink.strDrink;
   drinkPage_img.src = drink.strDrinkThumb;
