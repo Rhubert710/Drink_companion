@@ -94,15 +94,16 @@ body{
 
       const populatePage = {
 
-        drinkPage: (x)=>update_drinkPage(x)
+        drinkPage: (x)=>update_drinkPage(x),
+        homePage: () => console.log('nothing to update')
 
       }
 
 function navigate_to(newPage, props={}){
 
-  history.pushState({page:newPage}, "", `/${newPage}`)
+  history.pushState({page:newPage}, "", `/${newPage}?i=${props.drinkId}`)
 
-  loadPage(newPage);
+  loadPage(newPage, props);
 
 }
 
@@ -112,7 +113,7 @@ function loadPage(newPage, props){
   let newPage_div = document.querySelector(`#${newPage}`);
 
   document.querySelectorAll('.page').forEach((page)=> page.style['opacity'] = '0')
-
+console.log(props);
   populatePage[newPage](props);
 
 setTimeout(()=>{
@@ -129,7 +130,7 @@ setTimeout(()=>{
 
 function navigate_to_drink_page(drinkId) {
 
-  mainPage.style['opacity'] = '0';
+  homePage.style['opacity'] = '0';
     
     //first, fetch omments and if userlkjed ir dsked drink
 
@@ -141,7 +142,7 @@ function navigate_to_drink_page(drinkId) {
 
   setTimeout(()=>{
 
-    mainPage.style['display'] = 'none';
+    homePage.style['display'] = 'none';
 
     
     drinkPage.style['opacity'] = '1';
@@ -161,14 +162,14 @@ function navigate_to_drink_page(drinkId) {
 function navigate_to_homePage() {
 
   drinkPage.style['opacity'] = '0';
-  // mainPage.style['display'] = 'flex';
+  // homePage.style['display'] = 'flex';
 
 setTimeout(()=>{
 
-  mainPage.style['display'] = 'flex';
+  homePage.style['display'] = 'flex';
   drinkPage.style['display'] = 'none';
 
-  setTimeout(()=> mainPage.style['opacity'] = '1', 7);
+  setTimeout(()=> homePage.style['opacity'] = '1', 7);
 
   history.pushState({page:'drink'}, "", `/`)
 
@@ -179,8 +180,8 @@ setTimeout(()=>{
   
 function update_drinkPage(props){
 
-  console.log('wwwwwwwwww');
-console.log(props);
+  console.log('update_drinkPage ran');
+console.log('update_drinkPage props ' + props);
 
   let drink = allDrinks.find((i)=>(i.idDrink == props.drinkId));
 
@@ -195,17 +196,20 @@ window.addEventListener("popstate", event => {
                 // Grab the history state id
                 let prev_state = event.state;
                 // Show clicked id in console (just for fun)
+                console.log('popstate');
                 console.log("stateId = ", prev_state);
+
+                console.log(window.location.pathname);
+                console.log(window.location.search);
+
+
+                console.log(new URLSearchParams(window.location.search).keys);
                 // Visually select the clicked button/tab/box
                 // select_tab(stateId);
                 // Load content for this tab/page
                 // load_content(stateId);
 
-                if(prev_state.page='home'){
-
-                  navigate_to_homePage();
-
-                }
+                loadPage('homePage')
             });
 
 </script>
