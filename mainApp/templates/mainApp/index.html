@@ -193,9 +193,10 @@ console.log('update_drinkPage props ' + props);
 }
 
 window.addEventListener("popstate", event => {
+
                 // Grab the history state id
                 let prev_state = event.state;
-                // Show clicked id in console (just for fun)
+                
                 console.log('popstate');
                 console.log("stateId = ", prev_state);
 
