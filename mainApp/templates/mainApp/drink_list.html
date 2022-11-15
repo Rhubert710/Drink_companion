@@ -23,13 +23,16 @@
 
 
           // format ingredient list
-          let formatted_ingredients = drink.ingredients.map(i => `<a href="/i?i=${i.replace(' ','_')}">${i}</a>`)
+          let formatted_ingredients = drink.ingredients.map(i => 
+
+              `<a href="/browse?i=${i.replace(' ','_')}"
+                  onclick="event.stopPropagation()"> ${i} </a>`);
 
           // add drink
           const drinkDiv = document.createElement("div");
 
           drinkDiv.classList.add('a-card', 'a-card_hidden');
-          drinkDiv.onclick = ()=> navigate_to( `drink?id=${drink.idDrink}`, { drinkId : drink.idDrink } );
+          drinkDiv.onclick = ()=> navigate_to( `drink?id=${drink.idDrink}`);
 
           drinkDiv.innerHTML = `
 
@@ -101,6 +104,10 @@
           padding: 19px;
           padding-bottom: 8px;
 
+        }
+
+        #drink_list a:visited{
+          color: blue;
         }
 
       </style>
