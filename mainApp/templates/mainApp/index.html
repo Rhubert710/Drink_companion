@@ -94,7 +94,7 @@ body{
 
 const populatePage = {
 
-  '/': ()=> { return },
+  default: ()=> { return },
 
   '/drink': ()=> update_drinkPage(),
 
@@ -116,7 +116,7 @@ function loadPage(newPage ){
 
   document.querySelectorAll('.page').forEach((page)=> page.style['opacity'] = '0')
   
-  populatePage[newPage]();
+  populatePage[newPage]() || populatePage['default'];
 
   setTimeout(()=>{
 
