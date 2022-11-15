@@ -29,7 +29,7 @@
           const drinkDiv = document.createElement("div");
 
           drinkDiv.classList.add('a-card', 'a-card_hidden');
-          drinkDiv.onclick = ()=> navigate_to( 'drinkPage/drink', { drinkId : drink.idDrink } );
+          drinkDiv.onclick = ()=> navigate_to( `drink?id=${drink.idDrink}`, { drinkId : drink.idDrink } );
 
           drinkDiv.innerHTML = `
 

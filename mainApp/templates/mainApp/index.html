@@ -90,127 +90,62 @@ body{
 }
 </style>
 
-    <script>
+<script>
 
-      const populatePage = {
+const populatePage = {
 
-        drinkPage: (x)=>update_drinkPage(x),
-        homePage: () => console.log('nothing to update')
+  '/': ()=> { return },
 
-      }
+  '/drink': ()=> update_drinkPage(),
 
-function navigate_to(newPage, props={}){
+}
 
-  history.pushState({page:newPage}, "", `/${newPage}?i=${props.drinkId}`)
+function navigate_to( newUrl ){
 
-  loadPage(newPage, props);
+  history.pushState( {}, "", newUrl );
+
+  let newPage = window.location.pathname;
+  loadPage( newPage );
 
 }
 
 
-function loadPage(newPage, props){
+function loadPage(newPage ){
 
-  let newPage_div = document.querySelector(`#${newPage}`);
+  let newPage_div = document.querySelector( `[data-page = "${newPage}"` );
 
   document.querySelectorAll('.page').forEach((page)=> page.style['opacity'] = '0')
-console.log(props);
-  populatePage[newPage](props);
-
-setTimeout(()=>{
-
-  document.querySelectorAll('.page').forEach((page)=> page.style['display'] = 'none')
-  newPage_div.style['display'] = 'flex';
   
-  setTimeout(()=> newPage_div.style['opacity'] = '1', 7);
-
-
-},400);
-}
-
-
-function navigate_to_drink_page(drinkId) {
-
-  homePage.style['opacity'] = '0';
-    
-    //first, fetch omments and if userlkjed ir dsked drink
-
-  const drink = allDrinks.find((i)=>(i.idDrink == drinkId));
-  
-  update_drinkPage(drink);
-
-  drinkPage.style['display'] = 'flex';
+  populatePage[newPage]();
 
   setTimeout(()=>{
 
-    homePage.style['display'] = 'none';
-
+    document.querySelectorAll('.page').forEach((page)=> page.style['display'] = 'none')
+    newPage_div.style['display'] = 'flex';
     
-    drinkPage.style['opacity'] = '1';
-
-    // history.pushState({page:'home'}, "", `/?drink=${drinkId}`)
+    setTimeout(()=> newPage_div.style['opacity'] = '1', 11);
 
 
   },400);
-
-  
-    
-  
-  
-    
 }
 
-function navigate_to_homePage() {
-
-  drinkPage.style['opacity'] = '0';
-  // homePage.style['display'] = 'flex';
-
-setTimeout(()=>{
-
-  homePage.style['display'] = 'flex';
-  drinkPage.style['display'] = 'none';
-
-  setTimeout(()=> homePage.style['opacity'] = '1', 7);
-
-  history.pushState({page:'drink'}, "", `/`)
 
 
-},400);
-
-}
   
-function update_drinkPage(props){
 
-  console.log('update_drinkPage ran');
-console.log('update_drinkPage props ' + props);
-
-  let drink = allDrinks.find((i)=>(i.idDrink == props.drinkId));
-
-  drinkPage_drinkName.innerHTML = drink.strDrink;
-  drinkPage_img.src = drink.strDrinkThumb;
-  drinkPage_ingredients.innerHTML = drink.ingredients.map((ig, i) => drink.measures[i] + `<a href="">${ig}</a>` ).join(', ')
-  drinkPage_directions.innerHTML = drink.strInstructions;
-
-}
 
 window.addEventListener("popstate", event => {
 
                 // Grab the history state id
-                let prev_state = event.state;
-                
-                console.log('popstate');
-                console.log("stateId = ", prev_state);
+                // let prev_state = event.state;
 
-                console.log(window.location.pathname);
-                console.log(window.location.search);
-
-
-                console.log(new URLSearchParams(window.location.search).keys);
+                // console.log(new URLSearchParams(window.location.search).keys);
                 // Visually select the clicked button/tab/box
                 // select_tab(stateId);
                 // Load content for this tab/page
                 // load_content(stateId);
 
-                loadPage('homePage')
+                loadPage(window.location.pathname)
             });
 
 </script>
