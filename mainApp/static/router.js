@@ -25,6 +25,7 @@ function loadPage(){
   
     let newPage = window.location.pathname;
     // console.log(window.location.pathname);
+    
     let newPage_div = document.querySelector( `[data-page = "${newPage}"` );
     console.log(newPage_div);
   

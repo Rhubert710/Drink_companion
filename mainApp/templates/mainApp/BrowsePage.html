@@ -3,18 +3,57 @@
 
 <div id="browsePage" class="page" data-page="/browse">
 
-    <h1 id="browse_name">Ingr</h1>
+    <h1 id="browseName">Ingr</h1>
 
     <div id="browseResults"></div>
 
 
 </div>
 
+<script>
+
+    let ig = new URLSearchParams( window.location.search ).get('i').replace('_', ' ');
+    let filteredDrinks = allDrinks.filter( (i) =>(i.ingredients.includes(ig) ) );
+
+    console.log(filteredDrinks);
+
+    browseName.innerHTML = ig;
+
+    for (const drink of filteredDrinks){
+
+        // format ingredient list
+        let formatted_ingredients = drink.ingredients.map(i => 
+
+            `<a href="/browse?i=${i.replace(' ','_')}"
+                onclick="event.stopPropagation()"> ${i} </a>`);
+
+        // add drink
+        const drinkDiv = document.createElement("div");
+
+        drinkDiv.classList.add('a-card', 'a-card_hidden');
+        drinkDiv.onclick = ()=> navigate_to( `drink?id=${drink.idDrink}`);
+
+        drinkDiv.innerHTML = `
+
+              <img class='drink-img' src="${drink.strDrinkThumb}" alt="${drink.strDrink}" 
+                  style="width:19vmin; aspect-ratio:1;"/>
+
+              <div id="${drink.idDrink}" class='drink-details'>
+                  <strong>${drink.strDrink}</strong>
+                  <div style="margin-top:auto;">${formatted_ingredients.join(", ")}</div>
+              </div>
+        `;
+
+        document.querySelector('#browseResults').appendChild(drinkDiv);
+    }
+    
+    </script>
+
 <style>
 
     #browsePage{
         display: none;
-
+        flex-direction: column;
         opacity: 0;
         transition: opacity 400ms;
 
@@ -22,4 +61,22 @@
     #browse_name{
 
     }
+
+    #browseResults{
+
+        display: flex;
+        flex-wrap: wrap;
+
+        row-gap: 14px;
+        gap: 14px;
+
+       margin-left: auto;
+    }
+
+    #browseResults .a-card{
+
+        width: 400px;
+
+        }
+
 </style>
