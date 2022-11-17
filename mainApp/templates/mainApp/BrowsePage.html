@@ -3,30 +3,35 @@
 
 <div id="browsePage" class="page" data-page="/browse">
 
-    <h1 id="browseName">Ingr</h1>
+    <h1 id="browseName">Error</h1>
 
     <div id="browseResults"></div>
 
 
 </div>
 
+
 <script>
+
+function populate_browsePage(){
 
     let ig = new URLSearchParams( window.location.search ).get('i').replace('_', ' ');
     let filteredDrinks = allDrinks.filter( (i) =>(i.ingredients.includes(ig) ) );
 
-    console.log(filteredDrinks);
-
     browseName.innerHTML = ig;
+    browseResults.innerHTML= '';
+
 
     for (const drink of filteredDrinks){
 
         // format ingredient list
         let formatted_ingredients = drink.ingredients.map(i => 
 
-            `<a href="/browse?i=${i.replace(' ','_')}"
-                onclick="event.stopPropagation()"> ${i} </a>`);
+            `<div class='link'
+                onclick= " navigate_to( '/browse?i=${i.replace(' ','_')}' , event ) "> ${i}</div>`
 
+        );
+        
         // add drink
         const drinkDiv = document.createElement("div");
 
@@ -46,7 +51,10 @@
 
         document.querySelector('#browseResults').appendChild(drinkDiv);
     }
-    
+
+    addIntersectionObserver();
+
+}
     </script>
 
 <style>
@@ -69,8 +77,8 @@
 
         row-gap: 14px;
         gap: 14px;
-
-       margin-left: auto;
+        
+        justify-content: center;
     }
 
     #browseResults .a-card{

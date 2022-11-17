@@ -1,6 +1,9 @@
 
 
 
+function addIntersectionObserver() {
+    
+
 const observer = new IntersectionObserver((a_cards)=>{
     a_cards.forEach((card)=>{
 
@@ -18,3 +21,5 @@ const observer = new IntersectionObserver((a_cards)=>{
 });
 
 document.querySelectorAll('.a-card').forEach((el)=> observer.observe(el));
+
+}

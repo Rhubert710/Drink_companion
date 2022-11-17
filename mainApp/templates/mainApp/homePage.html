@@ -8,14 +8,22 @@
     <div id="mainLogo"><img src="static/drinks_background_blur.png" alt="" id="bg_img"></div>
 
     <!-- title -->
-    <h1>Drink Companion</h1>
+    <h1 title="fuck">Drink Companion</h1>
 
     <!-- search bar -->
     <input id="search-bar" type="text">
     
     <!-- Top Drinks -->
     {% include "mainApp/topDrinks.html" %}
+<!-- <div style="color: blue; text-decoration:underline">Test, and This</div>
+<div class="l">Test, and This</div>
 
+<a href="/l">Test, and This</a>
+<style>.l{
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+}</style> -->
     <!-- All Drinks -->
     {% include "mainApp/drink_list.html" %}
 
@@ -31,7 +39,7 @@ font-size: 44px;
 
   #homePage{
 
-      display: flex;
+      display: none;
       flex-direction: column;
       width: 100vw;
       max-width: 1400px;

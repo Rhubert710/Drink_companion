@@ -3,31 +3,32 @@
 
 const populatePage = {
 
-    '/': ()=> { return undefined },
-    '/browse': ()=> { return undefined },
+    '/': ()=> addIntersectionObserver(),
+    '/browse': ()=> populate_browsePage(),
   
     '/drink': ()=> update_drinkPage(),
   
   }
 
   
-  function navigate_to( newUrl ){
+  function navigate_to ( newUrl, e ) {
   
+    e.stopPropagation()
     history.pushState( {}, "", newUrl );
   
     // let newPage = window.location.pathname;
     loadPage();
-  
+    
   }
   
   
-function loadPage(){
+  function loadPage(){
   
     let newPage = window.location.pathname;
     // console.log(window.location.pathname);
     
     let newPage_div = document.querySelector( `[data-page = "${newPage}"` );
-    console.log(newPage_div);
+    // console.log(newPage_div);
   
     document.querySelectorAll('.page').forEach((page)=> page.style['opacity'] = '0')
     
@@ -38,7 +39,10 @@ function loadPage(){
   
       document.querySelectorAll('.page').forEach((page)=> page.style['display'] = 'none')
       newPage_div.style['display'] = 'flex';
-      
+
+      // console.log(newPage, newPage != '/');
+      // if (newPage != '/') { window.scrollTo(0, 0) };
+
       setTimeout(()=> newPage_div.style['opacity'] = '1', 11);
   
   
@@ -46,7 +50,8 @@ function loadPage(){
   }
 
   
-  
+
+
   window.addEventListener("popstate", event => {
   
                   // Grab the history state id
