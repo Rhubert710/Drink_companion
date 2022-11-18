@@ -14,6 +14,9 @@ const populatePage = {
   function navigate_to ( newUrl, e ) {
   
     e.stopPropagation()
+
+    history.replaceState( {scroll_y:window.scrollY} ,  '' );
+
     history.pushState( {}, "", newUrl );
   
     // let newPage = window.location.pathname;
@@ -40,8 +43,8 @@ const populatePage = {
       document.querySelectorAll('.page').forEach((page)=> page.style['display'] = 'none')
       newPage_div.style['display'] = 'flex';
 
-      // console.log(newPage, newPage != '/');
-      // if (newPage != '/') { window.scrollTo(0, 0) };
+      let {scroll_y} = history.state
+      if(scroll_y != null)  window.scrollTo(0, scroll_y); else window.scrollTo(0, 0);
 
       setTimeout(()=> newPage_div.style['opacity'] = '1', 11);
   
