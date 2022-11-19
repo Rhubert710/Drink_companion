@@ -2,7 +2,7 @@
 <header id="header" style="max-width: 99%; display:flex;">
             
     <!-- Hamburger -->
-    <div >E</div>
+    {% include "mainApp/sideBarMenu.html" %}
     
     <!-- login - top-right -->
     <top-right 
@@ -12,4 +12,11 @@
         { user ? 'userName' : 'login / sign-up'}
     </top-right>
 </header>
+
+<style>
+    #header{
+        height: 58px;
+        align-items: center;
+    }
+</style>
 

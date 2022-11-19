@@ -43,8 +43,13 @@ const populatePage = {
       document.querySelectorAll('.page').forEach((page)=> page.style['display'] = 'none')
       newPage_div.style['display'] = 'flex';
 
-      let {scroll_y} = history.state
-      if(scroll_y != null)  window.scrollTo(0, scroll_y); else window.scrollTo(0, 0);
+      //added try because b/ wasnt working in safari
+      try{
+
+        let scroll_y = history.state.scroll_y;
+        if (scroll_y)  window.scrollTo(0, scroll_y);
+
+      } catch { console.log(' '); }
 
       setTimeout(()=> newPage_div.style['opacity'] = '1', 11);
   
