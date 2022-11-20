@@ -13,11 +13,16 @@
 
         <img src="/static/account_icon.png" style="width:24px;">
 
-        {% if user.is_authenticated %}
-            <div> {{user.username}} </div>
-        {% else %}
-        <div> Login </div>
-        {% endif %}
+        <div class="username_div" style="align-self: flex-end;">
+
+            {% if user.is_authenticated %}
+                {{user.username}}
+            {% else %}
+                Login
+            {% endif %}
+
+        </div>
+        
     </top-right>
 </header>
 
