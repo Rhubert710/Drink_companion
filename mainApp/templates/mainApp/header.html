@@ -6,17 +6,27 @@
     
     <!-- login - top-right -->
     <top-right 
-        style = "margin:8px; margin-left:auto; cursor:pointer;"
+        style = "margin:8px; margin-left:auto; cursor:pointer; display: flex; align-items: center; gap:8px;"
         onClick= "document.querySelector('#loginModal').style.display = 'block'"
         >
-        { user ? 'userName' : 'login / sign-up'}
+        <!-- { user ? 'userName' : 'login / sign-up'} -->
+
+        <img src="/static/account_icon.png" style="width:24px;">
+
+        {% if user.is_authenticated %}
+            <div> {{user.username}} </div>
+        {% else %}
+        <div> Login </div>
+        {% endif %}
     </top-right>
 </header>
 
 <style>
     #header{
-        height: 58px;
-        align-items: center;
+        height: 57px;
+        align-items:center;
+        /* height: 58px;
+        align-items:center; */
     }
 </style>
 

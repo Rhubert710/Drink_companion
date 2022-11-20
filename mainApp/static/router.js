@@ -47,9 +47,9 @@ const populatePage = {
       try{
 
         let scroll_y = history.state.scroll_y;
-        if (scroll_y)  window.scrollTo(0, scroll_y);
+        if (scroll_y)  window.scrollTo(0, scroll_y); else window.scrollTo(0, 0);
 
-      } catch { console.log(' '); }
+      } catch(err) { console.log(err.message); }
 
       setTimeout(()=> newPage_div.style['opacity'] = '1', 11);
   

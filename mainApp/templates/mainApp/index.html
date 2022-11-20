@@ -25,13 +25,13 @@
         <div id="page_container">
 
           <!-- home page -->
-          {% include "mainApp/homePage.html" with display='flex' %}
+          {% include "mainApp/pages/homePage.html" with display='flex' %}
 
           <!-- drink page -->
-          {% include "mainApp/drinkPage.html" %}
+          {% include "mainApp/pages/drinkPage.html" %}
 
           <!-- browse page -->
-          {% include "mainApp/browsePage.html" %}
+          {% include "mainApp/pages/browsePage.html" %}
 
 
         </div>
@@ -48,10 +48,11 @@
 
 body{
   display: flex;
-
+  
   flex-direction: colum;
   justify-content: center;
 
+  margin-top: 0px;
 }
 #app {
   display: flex;

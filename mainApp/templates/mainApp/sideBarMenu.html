@@ -5,25 +5,50 @@
 
     <img id="menuIcon" src="static/hamburger_icon.png" alt="">
 
-    <div id="menu"></div>
+    <div id="menu">
+
+        <div class="menuItem"> <strong>Contact: </strong> Robert.Hubert@codeImmersives.com</div>
+    </div>
 </div>
 
 
 
 
 <style>
+
+#menuContainer_div{
+    position: relative;
+}
 #menuIcon{
     width: 24px;
     margin-inline: 14px;
-
-    position: relative;
+    /* margin-block: auto; */
+    
 }
 
 #menu{
-    height: 400px;
+    /* height: 400px; */
     width: 299px;
     z-index: 99;
     position: absolute;
-    background-color: aqua;
+    border: 1px solid rgba(208, 207, 207, 0.61);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    /* border-top: none; */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 547ms;
+    background-color: white;
+
 }
+
+#menu:hover, #menuContainer_div:hover #menu {
+    opacity: 1;
+    pointer-events: all;
+}
+.menuItem{
+    
+    padding: 19px;
+}
+
+
 </style>
