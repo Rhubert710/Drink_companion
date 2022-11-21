@@ -1,0 +1,85 @@
+
+
+
+<div style="background-color: rgb(126, 126, 126, .4);height:100vh; width:100vw; display: flex;flex-direction: column;align-items: center;justify-content: center;position: absolute;">
+  <div id='login-modal'>
+
+    <h1 id=""> Create Account </h1>
+
+    <div class='login-input-title'>username:</div>
+    <input type="text" id="username_input" class="login-input"/>
+    <div class='login-input-title'>password</div>
+    <input type="password" id="password_input" class="login-input"/>
+
+    <div style="align-self:flex-end; margin-right:10%;margin-bottom:29px">
+      Already have an account?
+      <span id='loginType_div'
+
+        style= "color:blue; cursor:pointer;"
+        onClick = "()=>changeLoginType()"
+          
+        >
+          login
+      </span>
+    </div>
+
+    <button
+
+      class='login-input'
+      
+      style="
+        background-color:black;
+        color:white;
+      "
+
+      onClick = " ()=> setUser() "
+      
+      >
+        Create Account
+    </button>
+
+  </div>
+</div>
+
+<style>
+
+#login-modal h1{
+  margin: 0;
+
+  margin-bottom: 10px;
+}
+#login-modal{
+
+  position: absolute;
+  top:14%;
+  min-width: 370px;
+  aspect-ratio: .9;
+  opacity: 1;
+  border-radius: 4px;
+  border: 1px solid black;
+  background-color: white;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  /* padding-left: 51px; */
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login-input{
+
+  width: 80%;
+  font-size: large;
+  padding: 8px;
+  border-radius: 19px;
+  /* margin-inline: auto; */
+  text-align: center;
+
+}
+
+.login-input-title{
+/* margin-inline: auto; */
+}
+
+  </style>
