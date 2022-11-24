@@ -4,7 +4,9 @@
 <div id="loginModalContainer_div" class="loginModalContainer_div" onclick="if(event.target == this) toggle_loginModal()">
   <div id='loginModal' onclick="return false;" class="loginModal">
 
-    <h1 id=""> Create Account </h1>
+    <h1 id="modal_title"> Create Account </h1>
+
+    <div class="modalAlert" style="color: red;"></div>
 
       <div class='login-input-title'>username:</div>
       <input type="text" id="username_input" class="login-input"/>
@@ -64,8 +66,17 @@ console.log('o');
     
   }
 
-function toggle_loginModal(){
+function toggle_loginModal(message =''){
 
+  // Set modal alert
+  document.querySelector('.modalAlert').innerHTML = message;
+
+  if(message){
+    loginModal.classList.add('has_alert')}
+  else loginModal.classList.remove('has_alert')
+
+
+  // Qoggle modal
   loginModalContainer_div.classList.toggle('modalContainer_open');
   loginModal.classList.toggle('loginModal_open');
   
@@ -93,6 +104,8 @@ function toggle_loginModal(){
   /* top:14%; */
   min-width: 370px;
   aspect-ratio: .9;
+  /* padding-top: 24px;
+  padding-bottom: 40px; */
   opacity: 0;
   border-radius: 4px;
   border: 1px solid black;
@@ -106,6 +119,15 @@ function toggle_loginModal(){
   gap: 8px;
   pointer-events: none;
   transform: translateY(-14%);
+}
+
+.has_alert{
+
+  aspect-ratio: unset;
+
+  padding-top: 24px;
+  padding-bottom: 40px;
+
 }
 
 .loginModal_open{
@@ -131,8 +153,9 @@ function toggle_loginModal(){
 
 }
 
-.login-input-title{
-/* margin-inline: auto; */
+#modal_title{
+  margin: 19px;
+  margin-bottom: 24px;
 }
 
 
