@@ -8,61 +8,67 @@
 
     <div class="modalAlert" style="color: red;"></div>
 
-      <div class='login-input-title'>username:</div>
-      <input type="text" id="username_input" class="login-input"/>
-      <div class='login-input-title'>password</div>
-      <input type="password" id="password_input" class="login-input"/>
+    <div class='login-input-title'>username:</div>
+    <input type="text" id="username_input" class="login-input"/>
+    <div class='login-input-title'>password</div>
+    <input type="password" id="password_input" class="login-input"/>
 
-      <div id="loginModal_phrase" style="align-self:flex-end; margin-right:10%;margin-bottom:29px">
-        Already have an account?
-        <span id="loginType_span"
+    <!-- phrase -->
+    <div style="align-self:flex-end; margin-right:10%;margin-bottom:29px">
+      
+        <span id="loginModal_phrase_span"> Already have an account? </span>
 
-          style= "color:blue; cursor:pointer;"
-          onClick = "toggle_loginModal_state()"
-            
-          >
+        <span id="loginType_span" style= "color:blue; cursor:pointer;"
+          onClick = " toggle_loginModal_state(this) " >
             login
         </span>
-      </div>
-
-      <button id="loginModal_button"
-
-        class='login-input'
-        
-        style="
-          background-color:black;
-          color:white;
-        "
-
-        onClick = " ()=> setUser() "
-        
-        >
-          Create Account
-      </button>
 
     </div>
+
+    <!-- button -->
+    <button id="loginModal_button"
+
+      class='login-input'
+      
+      style="
+        background-color:black;
+        color:white;
+      "
+
+      onClick = " ()=> setUser() "
+      
+      >
+        Create Account
+    </button>
+
   </div>
+</div>
 
 <script>
 
   let loginModal_state = 'createAccount';
 
-  function toggle_loginModal_state() {
+  function toggle_loginModal_state(link) {
+
+    const state = {createAccount:'login', login:'createAccount'}
+    loginModal_state = state[loginModal_state]
 
     const option = {
 
-      login: ['Login','Login','Login','Login']
+      createAccount: ['Create Account','Already have an account? ','login','Create Account'],
+      login: ['Login', 'Dont have an account? ', 'create account', 'Login']
+
     };
 
     [
-      document.querySelector('#logiModalTitle').innerText,
-      document.querySelector('#loginModal_phrase').innerText,
-      document.querySelector('#loginType_span').innerHTML,
-      document.querySelector('#loginModal_button').innerText
+      modal_title.innerText,
+      loginModal_phrase_span.innerText,
+      link.innerText,
+      loginModal_button.innerText
     
-    ] = option.login;
+    ] = option[loginModal_state];
 
-console.log('o');
+console.log(link);
     
   }
 
@@ -73,7 +79,8 @@ function toggle_loginModal(message =''){
 
   if(message){
     loginModal.classList.add('has_alert')}
-  else loginModal.classList.remove('has_alert')
+  else 
+    loginModal.classList.remove('has_alert')
 
 
   // Qoggle modal
