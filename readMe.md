@@ -1,1 +1,1 @@
- mixed drink resource using rapid API and Django for user management and database connection.
+ Mixed drink resource using rapid API and Django for user management and ORM.
