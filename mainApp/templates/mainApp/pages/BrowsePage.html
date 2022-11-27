@@ -36,7 +36,7 @@ function populate_browsePage(){
         const drinkDiv = document.createElement("div");
 
         drinkDiv.classList.add('a-card', 'a-card_hidden');
-        drinkDiv.onclick = ()=> navigate_to( `drink?id=${drink.idDrink}`);
+        drinkDiv.onclick = ()=> navigate_to( `drink?id=${drink.idDrink}` , event);
 
         drinkDiv.innerHTML = `
 

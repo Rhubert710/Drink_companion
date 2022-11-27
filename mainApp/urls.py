@@ -4,11 +4,12 @@ from . import views
 from django.contrib import admin
 
 urlpatterns = [
-    
-    path('admin/', admin.site.urls),
-    path('createUser/', views.createUser, name='screateUser'),
-    
+
     path('', views.index, name='index'),
+    path('drink', views.index, name='drinkPage'),
+    path('browse', views.index, name='browse'),
+    path('createUser/', views.createUser, name='createUser'),
+    
 
     # path('<slug>', views.index, name='index'),
     

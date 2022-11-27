@@ -4,7 +4,7 @@
 <div id="loginModalContainer_div" class="loginModalContainer_div" onclick="if(event.target == this) toggle_loginModal()">
   <div id='loginModal' onclick="return false;" class="loginModal">
 
-    <h1 id="modal_title"> Create Account </h1>
+    <h1 id="modal_title"> Login </h1>
 
     <div class="modalAlert" style="color: red;"></div>
 
@@ -16,11 +16,11 @@
     <!-- phrase -->
     <div style="align-self:flex-end; margin-right:10%;margin-bottom:29px">
       
-        <span id="loginModal_phrase_span"> Already have an account? </span>
+        <span id="loginModal_phrase_span"> Dont have an account?</span>
 
         <span id="loginType_span" style= "color:blue; cursor:pointer;"
           onClick = " toggle_loginModal_state(this) " >
-            login
+          create account
         </span>
 
     </div>
@@ -38,7 +38,7 @@
       onClick = " modalButton('local') "
       
       >
-        Create Account
+        Login
     </button>
 
   </div>
@@ -46,8 +46,9 @@
 
 <script>
 
-  let loginModal_state = 'createAccount';
 
+  let loginModal_state = 'login';
+  
   function toggle_loginModal_state(link) {
 
     const state = {createAccount:'login', login:'createAccount'}
@@ -67,8 +68,6 @@
       loginModal_button.innerText
     
     ] = option[loginModal_state];
-
-console.log(link);
     
   }
 
