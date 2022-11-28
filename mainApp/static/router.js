@@ -3,7 +3,7 @@
 
 const populatePage = {
 
-    '/': ()=> addIntersectionObserver(),
+    '/': ()=> populate_home(),
     '/browse': ()=> populate_browsePage(),
   
     '/drink': ()=> update_drinkPage(),

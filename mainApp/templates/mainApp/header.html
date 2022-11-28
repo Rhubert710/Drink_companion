@@ -4,12 +4,24 @@
     <!-- Hamburger -->
     {% include "mainApp/sideBarMenu.html" %}
     
+
+    <!-- center logo -->
+    <div id="header_logo"
+        style="margin-inline: auto; font-size: 1.8rem;cursor: pointer;"
+        onclick="navigate_to ( '/' , event )"
+    >
+        Drink Companion
+    </div>
+
+
     <!-- login - top-right -->
     <top-right 
-        style = "margin:8px; margin-left:auto; cursor:pointer; display: flex; align-items: center; gap:8px;"
+        style = "margin:8px; cursor:pointer; display: flex; align-items: center; gap:8px;"
         onClick= "toggle_loginModal()"
         >
         <!-- { user ? 'userName' : 'login / sign-up'} -->
+
+    
 
         <img src="/static/account_icon.png" style="width:24px;">
 

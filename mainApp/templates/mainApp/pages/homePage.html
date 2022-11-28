@@ -1,6 +1,7 @@
 
 
 
+
 <!-- PAGE - homePage -->
 <div id="homePage" class="page" data-page="/">
 
@@ -15,19 +16,20 @@
     
     <!-- Top Drinks -->
     {% include "mainApp/topDrinks.html" %}
-<!-- <div style="color: blue; text-decoration:underline">Test, and This</div>
-<div class="l">Test, and This</div>
 
-<a href="/l">Test, and This</a>
-<style>.l{
-  color: -webkit-link;
-  cursor: pointer;
-  text-decoration: underline;
-}</style> -->
     <!-- All Drinks -->
     {% include "mainApp/drink_list.html" %}
 
 </div>
+
+<script>
+  function populate_home(){
+
+    addIntersectionObserver();
+    header_logo.innerText = ' ';
+
+  }
+</script>
 
 <style>
 #homePage  h1{
