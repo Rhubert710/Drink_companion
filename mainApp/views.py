@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from mainApp.templates.mainApp import *
 
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
 
 from django.http import JsonResponse
@@ -9,21 +9,63 @@ import ast
 
 
 def index (request, slug=''):
+    print(request.user)
+
     return render(request, 'mainApp/index.html')
 
-def createUser(request):
-    print(request.POST)
-    # user = authenticate(username=request.POST.username, password=request.POST.password)
-    # if user is not None:
-    #     return JsonResponse({message:'That username aready exists'})
-   
-    # else:
-    #     user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+
+
+
+
+
+
+
+
+def createAccount(request):
+    
+    body = ast.literal_eval(request.body.decode('"UTF-8"'))
+
+    user = authenticate( request, username=body['username'], password=body['password'] )
+    
+    if user is None:
+        
+        user = User.objects.create_user( username=body['username'], password=body['password'] )
+        auth_login(request, user)
+
+        return JsonResponse({
+            'successful' : 'true',
+            'message' : 'Welcome',
+            'username' : user.get_username(),
+            'session' : user.get_session_auth_hash(),
+            })
+
+    else:
+        return JsonResponse({
+            'successful' : 'false',
+            'message' : 'An account with that username already exists',
+            })
+
 
 
 def login (request):
     
     body = ast.literal_eval(request.body.decode('"UTF-8"'))
-    
-    print( body['username'] )
-    return JsonResponse({'message':'That username aready exists'})
+
+    user = user = authenticate( request, username=body['username'], password=body['password'] )
+    print(user)
+
+    if user is not None:
+        auth_login(request, user)
+
+        return JsonResponse({
+            'successful' : 'true',
+            'message' : 'Welcome Back',
+            'username' : user.get_username(),
+            'session' : user.get_session_auth_hash()
+            })
+
+    else:
+        return JsonResponse({
+            'successful' : 'false',
+            'message' : 'user doesnt exist',
+            })

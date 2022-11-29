@@ -9,9 +9,9 @@
     <div id="modalAlert" class="modalAlert" style="color: red;"></div>
 
     <div class='login-input-title'>username:</div>
-    <input type="text" id="username_input" class="login-input"/>
+    <input type="text" id="username_input" class="login-input" maxlength="14"/>
     <div class='login-input-title'>password</div>
-    <input type="password" id="password_input" class="login-input"/>
+    <input type="password" id="password_input" class="login-input" maxlength="14" />
 
     <!-- phrase -->
     <div style="align-self:flex-end; margin-right:10%;margin-bottom:29px">
@@ -32,8 +32,10 @@
       onClick = " modalButton('login/') " 
       
       >
+
       <div id="loginModal_button_loader"></div>
-        Login
+      <span id="loginModal_button_text"> Login </span>
+
     </button>
 
   </div>
@@ -60,11 +62,14 @@
       modal_title.innerText,
       loginModal_phrase_span.innerText,
       link.innerText,
-      loginModal_button.innerText,
+      loginModal_button_text.innerText,
     
     ] = option[loginModal_state];
 
-    loginModal_button.setAttribute('onclick', `modalButton(${loginModal_state}/)` );
+    loginModal_button.setAttribute('onclick', `modalButton('${loginModal_state}/')` );
+
+    //clear error message
+    loginModal.classList.remove('has_alert'); modalAlert.innerText = '';
     
   }
 
@@ -89,6 +94,7 @@ function toggle_loginModal(message =''){
 
 function modalButton(url){
 
+
   loginModal_button_loader.classList.add('loader');
   loginModal_button.style['color'] = 'black';
 
@@ -99,10 +105,7 @@ function modalButton(url){
 
   //form validation
   if( !username_input.value || !password_input.value ) {
-    loginModal.classList.add('has_alert');
-    modalAlert.innerHTML = 'fields cant be blank';
-    loginModal_button_loader.classList.remove('loader');
-    loginModal_button.style['color'] = 'white';
+    handle_error('fields cant be blank');
     return
   }
 
@@ -113,22 +116,88 @@ function modalButton(url){
       // 'Content-Type': 'application/json',
       "X-CSRFToken": '{{ csrf_token }}'
     },
-    // credentials: 'include',
-    body: JSON.stringify({username:username_input.value , password:password_input.value}),
+    credentials: 'include',
+    body: JSON.stringify( {
+
+      username:username_input.value , 
+      password:password_input.value} ),
+
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log('Success:', data.message);
+
+      if(data.successful == 'true'){
+        console.log('Success:', data);
+        //open_successModal
+
+        toggle_loginModal();
+        open_succeessModal(data);
+      }
+      else{
+        handle_error(data.message);
+        return
+      }
+     
+      
     })
     .catch((error) => {
-      console.error('Error:', error);
+      handle_error ('500 intefnal server error')
     });
+
+    //helper fuctions
+    function handle_error (error_message){
+      loginModal.classList.add('has_alert');
+      modalAlert.innerHTML = error_message;
+      loginModal_button_loader.classList.remove('loader');
+      loginModal_button.style['color'] = 'white';
+    }
+
+    function open_succeessModal (data){
+      console.log('99999');
+      let successModal = document.createElement('div');
+
+      successModal.style = 'height:100vh; width:100vw; display: flex;flex-direction: column;align-items: center;justify-content: center;position: fixed; z-index: 9999;';
+      successModal.id = "successModal_container"
+      
+      successModal.innerHTML = `
+
+            <div id="successModal" onclick="this.remove()">
+
+              <h1> ${data.message} </h1>
+              <h1 style="margin-top: 0;"> ${data.username}</h1>
+
+              <button style="width: 99px;height: 29px;color:white; background-color:black;margin-top: 8px;font-size: 19px;">ok</button>
+            
+            </div>
+        
+        `
+            
+        app.append(successModal);
+        console.log('llllk');
+
+        // successModal_container.onclick ='this.remove()';
+    }
 
   
 }
+
 </script>
 
 <style>
+
+#successModal{
+
+  position: fixed;
+  width: 470px;
+  height: 250px;
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  
+  justify-content: center;
+  align-items: center;
+}
 
 #login-modal h1{
   margin: 0;
@@ -138,7 +207,7 @@ function modalButton(url){
 
 .loginModalContainer_div{
 
-  background-color: rgb(126, 126, 126, 0);height:100vh; width:100vw; display: flex;flex-direction: column;align-items: center;justify-content: center;position: fixed;;pointer-events: none;
+  background-color: rgb(126, 126, 126, 0);height:100vh; width:100vw; display: flex;flex-direction: column;align-items: center;justify-content: center;position: fixed;pointer-events: none;
 }
 
 .loginModal{
