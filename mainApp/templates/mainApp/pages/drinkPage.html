@@ -14,8 +14,8 @@
         <img id="drinkPage_img" src="https://www.thecocktaildb.com/images/media/drink/b522ek1521761610.jpg" alt="drink-image">
 
         <div id="like_buttons">
-            <img class="like_btn" src="{% static  'thumb_down.webp' %}" alt="">
-            <img class="like_btn" src="static/thumb-up.webp" alt="">
+            <img class="like_btn" src="{% static  'thumb_down.webp' %}" onclick="likeDrink('false' , this)">
+            <img class="like_btn" src="static/thumb_up.webp" onclick="likeDrink('true' , this)">
         </div>
 
         <!-- drink name -->
@@ -52,9 +52,9 @@
 
     function update_drinkPage(){
 
-        let drinkId= new URLSearchParams( window.location.search ).get('id');
+        const drinkId= new URLSearchParams( window.location.search ).get('id');
 
-        let drink = allDrinks.find( (i) =>(i.idDrink == drinkId ) );
+        const drink = allDrinks.find( (i) =>(i.idDrink == drinkId ) );
 
         drinkPage_drinkName.innerHTML = drink.strDrink;
         drinkPage_img.src = drink.strDrinkThumb;
@@ -64,7 +64,31 @@
         header_logo.innerText = 'Drink Companion';
 
     }
-    
+
+    function likeDrink ( bool , el ){
+
+        //set both black
+        $('.like_btn').forEach( el => el.src = el.src.replace('_color','') );
+
+        const drinkId= new URLSearchParams( window.location.search ).get('id');
+
+        const body = { 'drinkId':drinkId , liked:bool};
+
+        fetch ( 'likeDrink/' , {
+            method: 'POST',
+            headers: { "X-CSRFToken":  '{{ csrf_token }}' },
+            body: JSON.stringify( body),
+
+        }) .then((response) => response.json())
+            .then((data) => {
+                console.log('llk', data);
+                
+                el.src = el.src.includes('_c') ? el.src.replace('_color','') : el.src.replace('.' , '_color.')
+
+            })
+            .catch( (error) => console.log(error) );
+    }
+
     </script>
     
     <style>

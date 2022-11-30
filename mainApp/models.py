@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 
-
+from django.contrib.auth.models import User
 
 
 
@@ -14,9 +14,9 @@ class userAccount (models.Model):
 class LikedDrink (models.Model):
 
     drinkId = models.CharField(max_length=200)
-    user = models.ForeignKey ( userAccount , on_delete=models.CASCADE )
+    user = models.ForeignKey ( User , on_delete=models.CASCADE )
 
-    liked = models.BooleanField()
+    liked = models.CharField( max_length=7 ) #' true' or 'false'
 
 
 
@@ -24,7 +24,7 @@ class LikedDrink (models.Model):
 class Comment (models.Model):
     
     drinkId = models.CharField(max_length=200)
-    user = models.ForeignKey ( userAccount , on_delete=models.CASCADE )
+    user = models.ForeignKey ( User , on_delete=models.CASCADE )
 
     text = models.CharField(max_length=401)
 

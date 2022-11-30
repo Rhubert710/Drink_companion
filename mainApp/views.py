@@ -3,13 +3,13 @@ from mainApp.templates.mainApp import *
 
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
-
+from mainApp.models import *
 from django.http import JsonResponse
 import ast
-
+import json
 
 def index (request, slug=''):
-    print(request.user)
+
 
     return render(request, 'mainApp/index.html')
 
@@ -18,6 +18,22 @@ def index (request, slug=''):
 
 
 
+
+
+
+def likeDrink (request):
+
+    body = json.loads(request.body.decode('utf-8'))
+    
+    existing_ob = LikedDrink.objects.filter( user=request.user , drinkId=body['drinkId'])
+    
+    if existing_ob:
+        existing_ob.update( liked=body['liked'] )
+        return JsonResponse({'status':'200' , 'message':'item updated'})
+    
+    else:
+        LikedDrink( user=request.user , drinkId=body['drinkId'] , liked=body['liked']).save()
+        return JsonResponse({'status':'200' , 'message':'item created'})
 
 
 
