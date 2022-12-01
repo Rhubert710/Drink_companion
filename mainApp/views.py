@@ -28,10 +28,19 @@ def likeDrink (request):
     existing_ob = LikedDrink.objects.filter( user=request.user , drinkId=body['drinkId'])
     
     if existing_ob:
-        existing_ob.update( liked=body['liked'] )
-        return JsonResponse({'status':'200' , 'message':'item updated'})
+
+        if existing_ob.filter(liked=body['liked']):
+
+            existing_ob.delete()
+            return JsonResponse({'status':'200' , 'message':'item deleted'})
+        
+        else:
+
+            existing_ob.update( liked=body['liked'] )
+            return JsonResponse({'status':'200' , 'message':'item updated'})
     
     else:
+
         LikedDrink( user=request.user , drinkId=body['drinkId'] , liked=body['liked']).save()
         return JsonResponse({'status':'200' , 'message':'item created'})
 

@@ -75,7 +75,13 @@
 
 function toggle_loginModal(message =''){
 
-  // Set modal alert
+  //clear fields
+  $('#loginModal input').forEach( i => i.value = '' )
+
+  loginModal_button_loader.classList.remove('loader');
+  loginModal_button.style['color'] = 'white';
+
+  // Set modal alert (blank if none)
   document.querySelector('.modalAlert').innerHTML = message;
 
   if(message){
@@ -128,10 +134,11 @@ function modalButton(url){
 
       if(data.successful == 'true'){
         console.log('Success:', data);
-        //open_successModal
 
         toggle_loginModal();
         open_succeessModal(data);
+
+        username_div.innerText = data.username;
       }
       else{
         handle_error(data.message);
@@ -161,7 +168,7 @@ function modalButton(url){
       
       successModal.innerHTML = `
 
-            <div id="successModal" onclick="this.remove()">
+            <div id="successModal" onclick="this.parentNode.remove()">
 
               <h1> ${data.message} </h1>
               <h1 style="margin-top: 0;"> ${data.username}</h1>
