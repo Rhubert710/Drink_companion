@@ -116,24 +116,29 @@ function modalButton(url){
   }
 
 
+
+
+  
+  
+  
+  //post-reqst
   fetch( url , {
     method: 'POST',
     headers: {
       // 'Content-Type': 'application/json',
       "X-CSRFToken": '{{ csrf_token }}'
     },
-    credentials: 'include',
+    // credentials: 'include',
     body: JSON.stringify( {
 
       username:username_input.value , 
       password:password_input.value} ),
 
-  })
+  } )
     .then((response) => response.json())
     .then((data) => {
 
       if(data.successful == 'true'){
-        console.log('Success:', data);
 
         toggle_loginModal();
         open_succeessModal(data);
@@ -142,7 +147,6 @@ function modalButton(url){
       }
       else{
         handle_error(data.message);
-        return
       }
      
       
