@@ -10,8 +10,28 @@ import json
 
 def index (request, slug=''):
 
+    if request.user.is_authenticated:
 
-    return render(request, 'mainApp/index.html')
+        liked, disliked = [], []
+        likedList = LikedDrink.objects.values('drinkId', 'liked').filter(user=request.user)
+        print(likedList)
+        
+        
+        
+        
+        
+        
+        for ob in likedList:
+            if ob['liked'] == 'true':
+                liked.append(ob['drinkId'])
+            else:
+                disliked.append(ob['drinkId'])
+        print(liked, disliked)
+        return render(request, 'mainApp/index.html' , { 'liked':liked , 'disliked':disliked } )
+    
+    
+    else:
+        return render(request, 'mainApp/index.html')
 
 
 

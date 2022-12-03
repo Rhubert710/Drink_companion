@@ -126,7 +126,7 @@ function modalButton(url){
     method: 'POST',
     headers: {
       // 'Content-Type': 'application/json',
-      "X-CSRFToken": '{{ csrf_token }}'
+      "X-CSRFToken":  getCookie ('csrftoken')
     },
     // credentials: 'include',
     body: JSON.stringify( {
@@ -142,8 +142,9 @@ function modalButton(url){
 
         toggle_loginModal();
         open_succeessModal(data);
-
+        // console.log(data);
         username_div.innerText = data.username;
+        user = true;
       }
       else{
         handle_error(data.message);
@@ -152,8 +153,12 @@ function modalButton(url){
       
     })
     .catch((error) => {
-      handle_error ('500 intefnal server error')
+      
+      handle_error ('500 intefnal server error');
+      console.log(String(error));
     });
+
+
 
     //helper fuctions
     function handle_error (error_message){

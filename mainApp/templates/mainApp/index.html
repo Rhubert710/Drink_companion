@@ -40,15 +40,9 @@
 
     <!-- Login Modal -->
     {% include "mainApp/loginModal.html" %}
-
-    <script src="static/intersectionObserver.js"></script>
-    <script src="static/router.js"></script>
     
 </body>
 </html>
-
-
-
 
 <style>
 
@@ -102,12 +96,28 @@ body{
 </style>
 
 <script>
-  //global varabes
+  //global varables
 
-  let likedDrinks =[];
-  let dislikedDrinks =[];
+  {% if liked %}
+    let user = true;
+
+    let likedDrinks = {{liked|safe}};
+    let dislikedDrinks = {{disliked|safe}};
+  
+  
+   {% else %}
+    let user = false;
+
+    let likedDrinks = [];
+    let dislikedDrinks = [];
+  {% endif %}
 
 //myFunc
 const $ = (selector) => document.querySelectorAll( selector );
 
+getCookie = (key )=>((new RegExp((key || '=')+'=(.*?); ','gm')).exec(document.cookie+'; ') ||['',null])[1]
+
 </script>
+
+<script src="static/intersectionObserver.js"></script>
+<script src="static/router.js"></script>

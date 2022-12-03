@@ -27,45 +27,52 @@ function paint_likeButtons(){
 
 function likeDrink ( bool , el ){
 
-    // get drinkId //
-    const drinkId= new URLSearchParams( window.location.search ).get('id');
-    
-    // update variables //
-    if (bool=='true') {
-        likedDrinks = (likedDrinks.includes(drinkId)) ? likedDrinks.filter(i => i != drinkId) : [...likedDrinks, drinkId ];
-        dislikedDrinks = dislikedDrinks.filter(i => i != drinkId);}
+    if ( user ) {
+
+        // get drinkId //
+        const drinkId= new URLSearchParams( window.location.search ).get('id');
+        
+        // update variables //
+        if (bool=='true') {
+            likedDrinks = (likedDrinks.includes(drinkId)) ? likedDrinks.filter(i => i != drinkId) : [...likedDrinks, drinkId ];
+            dislikedDrinks = dislikedDrinks.filter(i => i != drinkId);}
+        else {
+            dislikedDrinks = ( dislikedDrinks.includes(drinkId) ) ? dislikedDrinks.filter(i => i != drinkId) : [...dislikedDrinks, drinkId ];
+            likedDrinks = likedDrinks.filter(i => i != drinkId);}
+            console.log('likdd', likedDrinks);
+            console.log(dislikedDrinks);
+
+
+        // update UI //
+        paint_likeButtons();
+        
+
+        // update db //
+
+        const body = { 'drinkId':drinkId , liked:bool};
+
+        fetch ( 'likeDrink/' , {
+
+            method: 'POST',
+            headers: { "X-CSRFToken":  getCookie('csrftoken') },
+
+            body: JSON.stringify( body ),
+        }) 
+        .then((response) => response.json())
+        .then((data) => {console.log(data.message);})
+        //  handle server error //
+
+        .catch( (error) => {
+            console.log( String(error) );
+            alert('500 internal server error')
+
+            location.reload();
+        });
+    }
+
     else {
-        dislikedDrinks = ( dislikedDrinks.includes(drinkId) ) ? dislikedDrinks.filter(i => i != drinkId) : [...dislikedDrinks, drinkId ];
-        likedDrinks = likedDrinks.filter(i => i != drinkId);}
-        console.log('likdd', likedDrinks);
-        console.log(dislikedDrinks);
-
-
-    // update UI //
-    paint_likeButtons();
-    
-
-    // update db //
-
-    const body = { 'drinkId':drinkId , liked:bool};
-
-    fetch ( 'likeDrink/' , {
-
-        method: 'POST',
-        headers: { "X-CSRFToken":  '{{ csrf_token }}' },
-
-        body: JSON.stringify( body ),
-    }) 
-    .then((response) => response.json())
-    .then((data) => {console.log(data.message);})
-    //  handle server error //
-
-    .catch( (error) => {
-        console.log( String(error) );
-        alert('500 internal server error')
-
-        location.reload();
-    });
+        toggle_loginModal( 'login to keep track of liked drinks' )
+    }
 }
 </script>
 
