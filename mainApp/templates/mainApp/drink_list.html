@@ -25,8 +25,8 @@
           // format ingredient list
           let formatted_ingredients = drink.ingredients.map(i => 
 
-              `<div class='link'
-                onclick= " navigate_to( '/browse?i=${i.replace(' ','_')}' , event ) "> ${i}</div>`
+              `<a  href = "/browse?i=${i.replace(' ','_')}"
+                onclick= " navigate_to( '/browse?i=${i.replace(' ','_')}' , event ) "> ${i}</a>`
                 
           );
 

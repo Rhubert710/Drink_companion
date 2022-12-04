@@ -14,6 +14,7 @@ const populatePage = {
   function navigate_to ( newUrl, e ) {
   
     e.stopPropagation()
+    e.preventDefault();
 
     history.replaceState( {scroll_y:window.scrollY} ,  '' );
 
