@@ -5,33 +5,118 @@
 
     <h1 id="profilePage_username">Robert</h1>
 
+    <div class="link">Change username</div>
+    <div class="link">logout</div>
+
     <h1>Liked Drinks</h1>
-    <div id="profilePage_likedDrinks"><h2>No liked drinks</h2></div>
+    <div id="profilePage_likedDrinks" class="profilePage_row" ></div>
 
     <h1>Disliked Drinks</h1>
-    <div id="profilePage_dislikedDrinks"><h2>No disliked drinks</h2></div>
+    <div id="profilePage_dislikedDrinks" class="profilePage_row" ><h2>No disliked drinks</h2></div>
 
 </div>
+
+
+
+
+
+
+
+
+
+<script>
+
+    function update_profilePage (){
+
+        profilePage_likedDrinks.innerHTML = profilePage_paint_list(likedDrinks);
+        console.log('k');
+
+
+        // console.log(likedDrinks.find(i=>i.));
+    }
+
+
+    function profilePage_paint_list ( list ) {
+
+        let liked_objects = list.map( i => allDrinks.find( j => j.idDrink == i ) )
+
+        let html = liked_objects.map( drink => (`
+        
+            <div class="profilePage-card">
+
+                    <img src="https://www.thecocktaildb.com/images/media/drink/ypl13s1504890158.jpg" alt="">
+                    <div>${drink.strDrink}</div>
+
+            </div>
+            
+        `));
+
+        return html
+    }
+
+
+</script>
 
 <style>
 
     #profilePage{
+
         display: flex;
         flex-direction: column;
+        
     }
 
     #profilePage_username{
+
         margin: 24px;
+        margin-left: auto;
 
         font-size: 40px;
     }
 
+    #profilePage .link{
 
+        margin-right: 24px;
+        margin-left: auto;
 
+        font-size: 19px;
+    }
 
+    #profilePage h2 {
+        font-style: italic;
+    }
 
+    .profilePage_row{
 
-#profilePage_username{
-    margin-left: auto;
-}
+        width: 100%;
+        height: 299px;
+        display: flex;
+        overflow: auto;
+        gap: 4px;
+    }
+
+    .profilePage-card {
+
+        width: 240px;
+        /* height: 299px; */
+        padding-bottom: 8px;
+        transition: .2s;
+        text-align: center;
+
+    }
+    .profilePage-card:hover{
+
+        /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+        width: 242px;
+
+    }
+
+    .profilePage-card img {
+
+        width: 100%;
+        border: 1px solid black;
+    }
+
+    
+
 </style>

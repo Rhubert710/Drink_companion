@@ -7,7 +7,7 @@ const populatePage = {
     '/browse': ()=> populate_browsePage(),
   
     '/drink': ()=> update_drinkPage(),
-    '/profilePage': ()=> console.log('l')
+    '/profilePage': ()=> update_profilePage(),
   
   }
 

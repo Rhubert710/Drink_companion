@@ -13,8 +13,9 @@ def index (request, slug=''):
     if request.user.is_authenticated:
 
         liked, disliked = [], []
-        likedList = LikedDrink.objects.values('drinkId', 'liked').filter(user=request.user)
-        print(likedList)
+        likedList = LikedDrink.objects.values('drinkId', 'liked').filter( user=request.user , liked='true')
+        dislikedList = LikedDrink.objects.values('drinkId', 'liked').filter(user=request.user , liked='false')
+        print( likedList , dislikedList )
         
         
         
