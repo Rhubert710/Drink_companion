@@ -14,11 +14,23 @@
     </div>
 
 
+    
+    
+    
+    
+    
+    
+    
     <!-- login - top-right -->
     <top-right 
         style = "margin:8px; cursor:pointer; display: flex; align-items: center; gap:8px;"
-        onClick= "toggle_loginModal()"
-        >
+        onClick= "
+            if (user) 
+                {navigate_to( '/profilePage' , event);}
+            else
+               { toggle_loginModal();}
+        "
+    >
         <!-- { user ? 'userName' : 'login / sign-up'} -->
 
     
