@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from mainApp.templates.mainApp import *
 
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate , logout , login as auth_login
 from django.contrib.auth.models import User
 from mainApp.models import *
 from django.http import JsonResponse
@@ -107,8 +107,12 @@ def login (request):
 
 
 
+def logout ( request ):
 
+    logout(request)
+    return render(request, 'mainApp/index.html')
 
+""" non-path functions"""
 def get_liked_lists ( user ):
     
     likedList = list(LikedDrink.objects.filter( user=user, liked='true').values_list('drinkId', flat=True))

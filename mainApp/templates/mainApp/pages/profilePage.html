@@ -3,24 +3,28 @@
 
 <div id="profilePage" class="page" data-page="/profilePage">
 
-    <h1 id="profilePage_username">Robert</h1>
+    <div class="profilePage_header">
+
+        <h1 id="profilePage_username">Robert</h1>
     
-    <div class="profilePage_menu" style="position: relative;">
+        <div class="profilePage_buttons">
+    
+            <div class="profilePage_button">Change username</div>
+            <div class="profilePage_button">Clear liked drinks</div>
+            <div class="profilePage_button" style="display: none;">Submit</div>
+            <div class="profilePage_button">logout</div>
+        </div>
 
-        <button>Change username</button>
-        <button>Clear liked drinks</button>
-
-        <button>logout</button>
     </div>
+
+    
+
+
+
+
 
     <h1>Liked Drinks</h1>
     <div id="profilePage_likedDrinks" class="profilePage_row" ></div>
-
-    
-    
-    
-    
-    
     
     <h1>Disliked Drinks</h1>
     <div id="profilePage_dislikedDrinks" class="profilePage_row" ><h2>No disliked drinks</h2></div>
@@ -77,30 +81,35 @@
         
     }
 
-    #profilePage_username{
-
+    .profilePage_header {
         margin: 24px;
         margin-left: auto;
+        display: flex;
+        flex-direction: column;
+    }
 
+    #profilePage_username{
+
+        
+        margin-bottom: 14px;
         font-size: 40px;
     }
 
-    .profilePage_menu{
-        margin-right: 24px;
-        margin-left: auto;
-    }
-    #profilePage button{
+    .profilePage_buttons {
 
-        margin-right: 24px;
-        margin-left: auto;
+        display: flex;
+        gap: 4px;
+    }
+        
+    .profilePage_button{
+        
         background-color: black;
         color: whitesmoke;
-        font-size: 17px;
-        padding: 8px;
-        border-radius: 4px;
-        margin-block: 4px;
-        padding: 8px;
-        position: absolute;
+        /* font-size: 17px; */
+        padding: 7px;
+        padding-inline: 14px;
+        border-radius: 14px;
+        letter-spacing: 1px;
 
     }
 
