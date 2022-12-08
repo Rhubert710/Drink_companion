@@ -142,9 +142,17 @@ function modalButton(url){
 
         toggle_loginModal();
         open_succeessModal(data);
-        // console.log(data);
+        
         username_div.innerText = data.username;
         user = true;
+
+        if (data.likedDrinks) {
+
+          likedDrinks = data.likedDrinks;
+          dislikedDrinks = data.dislikedDrinks;
+
+        }
+
       }
       else{
         handle_error(data.message);
