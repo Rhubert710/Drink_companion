@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from mainApp.templates.mainApp import *
 
-from django.contrib.auth import authenticate , logout , login as auth_login
+from django.contrib.auth import authenticate , logout as auth_logout , login as auth_login
 from django.contrib.auth.models import User
 from mainApp.models import *
 from django.http import JsonResponse
@@ -109,8 +109,8 @@ def login (request):
 
 def logout ( request ):
 
-    logout(request)
-    return render(request, 'mainApp/index.html')
+    auth_logout(request)
+    return redirect ( 'index' ) #add success modal
 
 """ non-path functions"""
 def get_liked_lists ( user ):

@@ -67,6 +67,10 @@ body{
   /* align-items: center; */
 }
 
+h1, h2 {
+  cursor: default;
+}
+
 
 
 
@@ -99,7 +103,7 @@ body{
 </style>
 
 <script>
-  //global varables
+  // global varables
 
   {% if liked %}
     let user = true;
@@ -118,6 +122,7 @@ body{
 //myFunc
 const $ = (selector) => document.querySelectorAll( selector );
 
+// get cookie
 getCookie = (key )=>((new RegExp((key || '=')+'=(.*?); ','gm')).exec(document.cookie+'; ') ||['',null])[1]
 
 </script>
