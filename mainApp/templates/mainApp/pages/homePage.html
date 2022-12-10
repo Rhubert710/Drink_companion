@@ -24,22 +24,22 @@
 
         <div class="searchResult_card">
 
-          <Div class="searchResult_name">DrinkName</Div> <div class="searchResult_type">ingredient</div>
+          <Div class="searchResult_name">DrinkName</Div> <div class="searchResult_type pink">ingr</div>
 
         </div>
         <div class="searchResult_card">
 
-          <Div class="searchResult_name">DrinkName</Div> <div class="searchResult_type">ingredient</div>
+          <Div class="searchResult_name">DrinkName</Div> <div class="searchResult_type pink">ingr</div>
 
         </div>
         <div class="searchResult_card">
 
-          <Div class="searchResult_name">DrinkName</Div> <div class="searchResult_type">ingredient</div>
+          <Div class="searchResult_name">DrinkName</Div> <div class="searchResult_type blue">drink</div>
 
         </div>
         <div class="searchResult_card">
 
-          <Div class="searchResult_name">DrinkName</Div> <div class="searchResult_type">ingredient</div>
+          <Div class="searchResult_name">DrinkName</Div> <div class="searchResult_type blue">drink</div>
 
         </div>
         <div class="searchResult_card">
@@ -161,7 +161,21 @@ margin-top: 0px;
 .searchResult_type{
   
   margin-left: auto;
+  border-radius: 14px;
+  
+  padding-inline: 8px;
 
+}
+
+.pink {
+  background-color: lightpink;
+  
+}
+
+.blue {
+
+  /* background-color:cornflowerblue ; */
+background-color: dodgerblue;
 
 }
 </style>
@@ -183,14 +197,19 @@ margin-top: 0px;
 
     if( max != 0) el.classList.add('searching');
 
-    // let searchResults_ingr = allDrinks.filter ( drink => drink.strDrink.slice(0,max) == el.value )
-    let searchResults_drinks = allDrinks.filter ( drink => drink.strDrink.slice(0,max).toLowerCase() == el.value )
+    let searchResults_ingr = allIngredients.filter ( ingr => ingr.slice(0,max).toLowerCase() == value )
+    let searchResults_drinks = allDrinks.filter ( drink => drink.strDrink.slice(0,max).toLowerCase() == value )
 
     // const html_searchResults_drinks = searchResults_drinks.map( drink => {
 //l
     //     ``
     // })
+
+
+
+
     console.log(searchResults_drinks);
+    console.log(searchResults_ingr);
   }
 
 </script>
