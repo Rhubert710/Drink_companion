@@ -144,7 +144,7 @@ function modalButton(url){
         open_succeessModal(data);
         
         username_div.innerText = data.username;
-        user = true;
+        user = data.username;
 
         if (data.likedDrinks) {
 
@@ -309,11 +309,13 @@ function modalButton(url){
   border: 4px solid #f3f3f3; /* Light grey */
   border-top: 4px solid black; 
   border-radius: 50%;
-  width: 19px;
-  height: 19px;
+  /* width: 90%; */
+  /* height: 11px; */
+  height: 90%;
+  aspect-ratio: 1;
   animation: spin 1s linear infinite;
   position: absolute;
-  left: 165px;
+  /* left: 165px; */
 }
 
 @keyframes spin {

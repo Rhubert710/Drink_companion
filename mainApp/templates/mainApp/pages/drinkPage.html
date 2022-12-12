@@ -33,15 +33,8 @@
 
 
             <br><div class='drinkPage_data'>Comments:</div>
-            <div id="comments_container"></div>
-
-            <br><textarea name="" id="" maxlength="400"></textarea>
-
-            <button id="postComment_button" 
-                onclick="toggle_loginModal('you must login to leave a comnment')"
-
-            > post
-            </button>
+           
+            {% include "mainApp/comments.html" %}
 
         </div>
 
@@ -59,7 +52,7 @@
 
         drinkPage_drinkName.innerHTML = drink.strDrink;
         drinkPage_img.src = drink.strDrinkThumb;
-        drinkPage_ingredients.innerHTML = drink.ingredients.map((ig, i) => drink.measures[i] + `<a href='/browse?i=${ig.replace(' ','_')}'  onclick="navigate_to( '/browse?i=${ig.replace(' ','_')}' , event ) " > ${ig}</a>` ).join(', ')
+        drinkPage_ingredients.innerHTML = drink.ingredients.map((ig, i) => drink.measures[i] + `<a href='/browse?i=${ig.replace(' ','_')}'  onclick="navigate_to( '/browse?i=${ig.replace(' ','_')}' , event ) " > ${ig}</a>` ).join(', ').replace('undefined','');
         drinkPage_directions.innerHTML = drink.strInstructions;
 
         header_logo.innerText = 'Drink Companion';
