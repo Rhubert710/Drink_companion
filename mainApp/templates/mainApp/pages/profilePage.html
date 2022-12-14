@@ -21,10 +21,11 @@
             
             
             
-            <div class="profilePage_button"  onclick="this.firstElementChild .classList.add('loader');" >
-                <div></div>
-                <!-- logout -->
+            <div class="profilePage_button"  onclick=" add_loadingSpinner ( this ) " >
+               
+                logout
             </div>
+
         </div>
 
     </div>
@@ -126,6 +127,28 @@
 
     }
 
+    #spinner_container {
+        position: absolute;
+        /* height: 19px;
+        width: 46px; */
+        height:1rem;
+        /* width: 6ch; */
+        background-color: greenyellow;
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .spinner {
+        border: 4px solid #f3f3f3; /* Light grey */
+        border-top: 4px solid black; 
+        border-radius: 50%;
+        height: 80%;
+        aspect-ratio: 1;
+        animation: spin 1s linear infinite;
+
+    }
+
     #profilePage h2 {
         font-style: italic;
 
@@ -165,3 +188,49 @@
     
 
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+function add_loadingSpinner ( el ) {
+
+    let spinner = document.createElement('div');
+    
+    // let padding = el.style['padding-left']
+    // console.log(getComputedStyle(el)['padding-left']);
+
+
+    spinner.style['width'] = `${el.innerText.length}ch`;
+    
+    
+    
+    
+    
+    
+    spinner.id = 'spinner_container';
+    spinner.innerHTML = '<div class="spinner"></div>';
+
+    el.prepend(spinner);
+
+
+
+
+
+}
+
+</script>

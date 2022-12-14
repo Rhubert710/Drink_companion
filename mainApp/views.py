@@ -7,7 +7,11 @@ from mainApp.models import *
 from django.http import JsonResponse
 import ast
 import json
+from django.views.decorators.csrf import ensure_csrf_cookie
 
+
+
+@ensure_csrf_cookie
 def index (request, slug=''):
 
     if request.user.is_authenticated:

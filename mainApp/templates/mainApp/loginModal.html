@@ -162,7 +162,7 @@ function modalButton(url){
     })
     .catch((error) => {
       
-      handle_error ('500 intefnal server error');
+      handle_error ('500 internal server error');
       console.log(String(error));
     });
 
@@ -309,13 +309,12 @@ function modalButton(url){
   border: 4px solid #f3f3f3; /* Light grey */
   border-top: 4px solid black; 
   border-radius: 50%;
-  /* width: 90%; */
-  /* height: 11px; */
-  height: 90%;
+  width: 19px;
+  height: 19px;
   aspect-ratio: 1;
   animation: spin 1s linear infinite;
   position: absolute;
-  /* left: 165px; */
+  left: 165px;
 }
 
 @keyframes spin {
