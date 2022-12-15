@@ -9,22 +9,7 @@
     
         <div class="profilePage_buttons">
     
-            <div class="profilePage_button">Change username</div>
-            <div class="profilePage_button">Clear liked drinks</div>
-            <div class="profilePage_button" style="display: none;">Submit</div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <div class="profilePage_button"  onclick=" add_loadingSpinner ( this ) " >
-               
-                logout
-            </div>
+            {% include 'mainApp/profileButtons.html' %}
 
         </div>
 
@@ -113,37 +98,19 @@
         gap: 4px;
     }
         
-    .profilePage_button{
-        
-        background-color: black;
-        color: whitesmoke;
-        /* font-size: 17px; */
-        padding: 7px;
-        padding-inline: 14px;
-        border-radius: 14px;
-        letter-spacing: 1px;
-        cursor: default;
-        /* position: relative; */
 
-    }
-
-    #spinner_container {
+    #button_spinner_container {
         position: absolute;
-        /* height: 19px;
-        width: 46px; */
-        height:1rem;
-        /* width: 6ch; */
-        background-color: greenyellow;
+        background-color: inherit;
         display: flex;
         justify-content: center;
-
     }
 
     .spinner {
         border: 4px solid #f3f3f3; /* Light grey */
         border-top: 4px solid black; 
         border-radius: 50%;
-        height: 80%;
+        height: 70;
         aspect-ratio: 1;
         animation: spin 1s linear infinite;
 
@@ -207,30 +174,38 @@
 
 <script>
 
-function add_loadingSpinner ( el ) {
-
+function add_loadingSpinner_forButton ( el ) {
+    
+    let cs = getComputedStyle(el);
+    
+    let padding_inline = parseFloat( cs['padding-left'] ) + parseFloat( cs['padding-right'] );
+    let padding_block = parseFloat( cs['padding-top'] ) + parseFloat( cs['padding-bottom'] );
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //create spinner
     let spinner = document.createElement('div');
-    
-    // let padding = el.style['padding-left']
-    // console.log(getComputedStyle(el)['padding-left']);
 
-
-    spinner.style['width'] = `${el.innerText.length}ch`;
-    
-    
-    
-    
-    
-    
-    spinner.id = 'spinner_container';
-    spinner.innerHTML = '<div class="spinner"></div>';
-
+    spinner.style['width'] = el.clientWidth - padding_inline + 'px' ;
+    spinner.style['height'] = el.clientHeight- padding_block + 'px' ;
+    spinner.id = 'button_spinner_container' ;
+    spinner.innerHTML = '<div class="spinner"></div>' ;
     el.prepend(spinner);
-
-
-
-
-
 }
+
+function remove_loadingSpinner_forButton () {
+
+    document.querySelector( '#button_spinner_container' ).remove;
+}
+
+
 
 </script>

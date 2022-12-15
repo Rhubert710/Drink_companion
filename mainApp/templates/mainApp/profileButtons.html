@@ -1,0 +1,50 @@
+
+
+
+<!-- Change username -->
+<div class="profilePage_button">Change username</div>
+
+<!-- Clear liked drinks-->
+<div class="profilePage_button">Clear liked drinks</div>
+
+<!-- logout -->
+<div class="profilePage_button"  onclick=" logout ( this ) " > logout </div>
+
+
+<!-- Submit -->
+<div class="profilePage_button" style="display: none;">Submit</div>
+
+
+
+
+
+
+
+
+<script>
+
+// logout
+function logout( el ) {
+
+    add_loadingSpinner_forButton( el )
+    window.location.replace( '/logout')
+}
+</script>
+
+<style>
+    .profilePage_button{
+        
+        background-color: black;
+        color: whitesmoke;
+        /* font-size: 17px; */
+        padding-block: 7px;
+        padding-inline: 14px;
+        /* padding-left: 4px;
+        padding-right: 6px; */
+        border-radius: 14px;
+        letter-spacing: 1px;
+        cursor: default;
+        /* position: relative; */
+
+    }
+</style>
