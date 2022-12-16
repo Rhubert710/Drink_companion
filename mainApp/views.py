@@ -7,17 +7,16 @@ from mainApp.models import *
 from django.http import JsonResponse
 import ast
 import json
-from django.views.decorators.csrf import ensure_csrf_cookie
+# from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 
-@ensure_csrf_cookie
 def index (request, slug=''):
 
     if request.user.is_authenticated:
 
         likedList , dislikedList = get_liked_lists(request.user)
-        return render(request, 'mainApp/index.html' , { 'liked':likedList , 'disliked':dislikedList } )
+        return render(request, 'mainApp/index.html' , { 'liked':likedList , 'disliked':dislikedList , 'user': request.user } )
     
     else:
         return render(request, 'mainApp/index.html')

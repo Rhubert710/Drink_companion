@@ -25,7 +25,7 @@
     <div id="profilePage_likedDrinks" class="profilePage_row" ></div>
     
     <h1>Disliked Drinks</h1>
-    <div id="profilePage_dislikedDrinks" class="profilePage_row" ><h2>No disliked drinks</h2></div>
+    <div id="profilePage_dislikedDrinks" class="profilePage_row" ></div>
 
 </div>
 
@@ -41,8 +41,8 @@
 
     function update_profilePage (){
 
-        profilePage_likedDrinks.innerHTML = profilePage_paint_list(likedDrinks);
-
+        profilePage_likedDrinks.innerHTML = profilePage_paint_list( likedDrinks ) || '<h2>No liked drinks</h2>';
+        profilePage_dislikedDrinks.innerHTML = profilePage_paint_list( dislikedDrinks ) || '<h2>No disliked drinks</h2>';
 
         // console.log(likedDrinks.find(i=>i.));
     }
@@ -50,14 +50,18 @@
 
     function profilePage_paint_list ( list ) {
 
-        let liked_objects = list.map( i => allDrinks.find( j => j.idDrink == i ) )
+        if ( list.length ==0 ) {
+            return
+        }
 
-        let html = liked_objects.map( drink => (`
+        let liked_list_objects = list.map( i => allDrinks.find( j => j.idDrink == i ) )
+
+        let html = liked_list_objects.map( drink => (`
         
-            <div class="profilePage-card">
+            <div class="profilePage-card" onclick= "navigate_to( 'drink?id=${drink.idDrink}' , event)" >
 
-                    <img src="https://www.thecocktaildb.com/images/media/drink/ypl13s1504890158.jpg" alt="">
-                    <div>${drink.strDrink}</div>
+                    <img src= "${ drink.strDrinkThumb }" alt="${ drink.strDrink }">
+                    <div>${ drink.strDrink }</div>
 
             </div>
             

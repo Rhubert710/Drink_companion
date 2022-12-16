@@ -11,9 +11,9 @@
               <script>document.querySelector('#bar').innerHTML = popD.map((drink)=>(`
                   <div class='cardd'>
           
-                      <img class='card_img' src=${drink.strDrinkThumb} alt="" />
+                      <img class='card_img' src= "${ drink.strDrinkThumb }" alt="${ drink.strDrink }" />
           
-                      <div class='drinkName'>${drink.strDrink}</div>
+                      <div class='drinkName'>${ drink.strDrink }</div>
           
                   </div>
               `))</script>

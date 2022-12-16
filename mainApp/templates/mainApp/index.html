@@ -105,11 +105,11 @@ h1, h2 {
 <script>
   // global varables
 
-  {% if liked %}
-    let user = true;
+  {% if user %}
+    let user = '{{ user }}';
 
-    let likedDrinks = {{liked|safe}};
-    let dislikedDrinks = {{disliked|safe}};
+    let likedDrinks = {{ liked|safe }};
+    let dislikedDrinks = {{ disliked|safe }};
   
   
    {% else %}

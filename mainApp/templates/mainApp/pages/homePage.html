@@ -79,9 +79,16 @@
   #search-bar:focus {
     outline: none;
   }
+
   #search-bar:focus + #search_results{
     display: block;
   }
+  #search-bar:focus + #search_results{
+    display: block;
+
+
+  }
+
   .searching {
     border-bottom: none;
   }
@@ -96,11 +103,15 @@
     transform: translateX(11px);
     padding-top: 8px;
     overflow-y: hidden;
-
-    /* display: none; */
+    cursor: default;
+    font-size: 19px;
+    display: none;
   }
   .searchResult_card {
+    
     display: flex;
+    align-items: center;
+
     padding: 8px;
   }
   .searchResult_card:hover {
@@ -112,7 +123,7 @@
   .searchResult_type {
     margin-left: auto;
     border-radius: 14px;
-
+    font-size: small;
     padding-inline: 8px;
   }
 
