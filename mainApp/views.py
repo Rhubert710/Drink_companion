@@ -4,11 +4,11 @@ from mainApp.templates.mainApp import *
 from django.contrib.auth import authenticate , logout as auth_logout , login as auth_login
 from django.contrib.auth.models import User
 from mainApp.models import *
-from django.http import JsonResponse
+from django.http import JsonResponse , HttpResponse
 import ast
 import json
-# from django.views.decorators.csrf import ensure_csrf_cookie
-
+from django.template.loader import render_to_string
+from mainApp.forms import *
 
 
 def index (request, slug=''):
@@ -17,6 +17,9 @@ def index (request, slug=''):
 
         likedList , dislikedList = get_liked_lists(request.user)
         return render(request, 'mainApp/index.html' , { 'liked':likedList , 'disliked':dislikedList , 'user': request.user } )
+    
+    
+    
     
     else:
         return render(request, 'mainApp/index.html')
@@ -50,6 +53,19 @@ def likeDrink (request):
         LikedDrink( user=request.user , drinkId=body['drinkId'] , liked=body['liked']).save()
         return JsonResponse({'status':'200' , 'message':'item created'}) # create
 
+
+
+def postComment(request):
+
+    form = CommentForm ( request.POST )
+
+    if form.is_valid():
+        form.save()
+
+    comments = Comment.objects.filter( drinkId= request.POST['drinkId'] )
+
+    redered_commentsList = render_to_string( 'mainApp/commentsList.html' , { 'comments' : comments } )
+    return JsonResponse ( { 'commentList_HTML' : redered_commentsList } )
 
 
 def createAccount(request):
@@ -114,6 +130,7 @@ def logout ( request ):
 
     auth_logout(request)
     return redirect ( 'index' ) #add success modal
+
 
 """ non-path functions"""
 def get_liked_lists ( user ):

@@ -38,9 +38,7 @@ function likeDrink ( bool , el ){
             dislikedDrinks = dislikedDrinks.filter(i => i != drinkId);}
         else {
             dislikedDrinks = ( dislikedDrinks.includes(drinkId) ) ? dislikedDrinks.filter(i => i != drinkId) : [...dislikedDrinks, drinkId ];
-            likedDrinks = likedDrinks.filter(i => i != drinkId);}
-            console.log('likdd', likedDrinks);
-            console.log(dislikedDrinks);
+            likedDrinks = likedDrinks.filter(i => i != drinkId);};
 
 
         // update UI //

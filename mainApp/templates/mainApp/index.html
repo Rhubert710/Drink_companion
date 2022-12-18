@@ -101,11 +101,10 @@ h1, h2 {
 
 }
 </style>
-
 <script>
   // global varables
 
-  {% if user %}
+  {% if user.is_authenticated %}
     let user = '{{ user }}';
 
     let likedDrinks = {{ liked|safe }};
@@ -118,6 +117,9 @@ h1, h2 {
     let likedDrinks = [];
     let dislikedDrinks = [];
   {% endif %}
+
+
+
 
 //myFunc
 const $ = (selector) => document.querySelectorAll( selector );

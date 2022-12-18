@@ -5,11 +5,82 @@
 
  {% include "mainApp/commentsList.html" %}
 
- <br><textarea name="" id="" maxlength="400"></textarea>
+ <form id="commentForm" >
 
- <button id="postComment_button" 
-     onclick="toggle_loginModal('you must login to leave a comnment')"
+    <br><textarea name="comment_text" id="comment_ta" maxlength="400"></textarea>
 
- > post
- </button>
+    <br><button id="postComment_button"  onclick=" postComment ( this ) " 
+        > post
+    </button>
 
+</form>
+
+<script>
+
+
+
+
+
+
+
+function postComment ( el ) {
+
+    if ( !user ) {
+
+        toggle_loginModal( 'you must login to leave a comnment' );
+        return
+    }
+
+    // get drinkId //
+    const drinkId= new URLSearchParams( window.location.search ).get('id');
+
+    // get comment text //
+    // const comment_text = comment_ta.value;
+
+    // update UI //
+    // paint_likeButtons();
+    
+
+    // update db //
+
+    const body = new FormData(commentForm);
+    body.append ( 'drinkId' , drinkId )
+
+    fetch ( 'postComment/' , {
+
+        method: 'POST',
+        headers: { "X-CSRFToken":  getCookie('csrftoken') },
+        
+        body: body,
+    }) 
+    .then((response) => {
+        console.log(response);
+
+    
+    })
+    //  handle server error //
+
+    .catch( (error) => {
+        console.log( String(error) );
+        alert('500 internal server error')
+
+        location.reload();
+    });
+
+}
+</script>
+
+<style>
+            #drinkPage textarea{
+           
+           height: 80px;
+       }
+       #postComment_button{
+
+           background-color: black;
+           border: none;
+           width:fit-content;
+           color: white;
+           align-self: flex-end;
+       }
+</style>
