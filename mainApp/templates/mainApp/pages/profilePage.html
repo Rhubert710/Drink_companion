@@ -44,7 +44,7 @@
         profilePage_likedDrinks.innerHTML = profilePage_paint_list( likedDrinks ) || '<h2>No liked drinks</h2>';
         profilePage_dislikedDrinks.innerHTML = profilePage_paint_list( dislikedDrinks ) || '<h2>No disliked drinks</h2>';
 
-        // console.log(likedDrinks.find(i=>i.));
+        header_logo.innerText = 'Drink Companion';
     }
 
 
@@ -207,7 +207,7 @@ function add_loadingSpinner_forButton ( el ) {
 
 function remove_loadingSpinner_forButton () {
 
-    document.querySelector( '#button_spinner_container' ).remove;
+    document.querySelector( '#button_spinner_container' ).remove();
 }
 
 

@@ -56,16 +56,30 @@ def likeDrink (request):
 
 
 def postComment(request):
+    
+    body = json.loads(request.body.decode('utf-8'))
 
-    form = CommentForm ( request.POST )
+    Comment( drinkId= body['drinkId'] , text= body['commentText'] , user= request.user ).save()
 
-    if form.is_valid():
-        form.save()
+    # get comments
+    comments = Comment.objects.filter( drinkId= body['drinkId'] )
 
-    comments = Comment.objects.filter( drinkId= request.POST['drinkId'] )
-
+    # render template to string
     redered_commentsList = render_to_string( 'mainApp/commentsList.html' , { 'comments' : comments } )
+    
     return JsonResponse ( { 'commentList_HTML' : redered_commentsList } )
+
+def getComments(request):
+
+    drinkId = request.GET.get('drinkId', None)
+
+    # get comments
+    comments = Comment.objects.filter( drinkId= drinkId )
+
+    # render template to string
+    redered_commentsList = render_to_string( 'mainApp/commentsList.html' ,  { 'comments' : comments } )
+    
+    return HttpResponse ( redered_commentsList  )
 
 
 def createAccount(request):

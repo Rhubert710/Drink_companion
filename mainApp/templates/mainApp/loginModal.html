@@ -167,7 +167,7 @@ function modalButton(url){
     });
 
 
-
+  }
     //helper fuctions
     function handle_error (error_message){
       loginModal.classList.add('has_alert');
@@ -179,7 +179,7 @@ function modalButton(url){
 
     /* Open Success Modal*/
     function open_succeessModal (data){
-      console.log('99999');
+      
       let successModal = document.createElement('div');
 
       successModal.style = 'height:100vh; width:100vw; display: flex;flex-direction: column;align-items: center;justify-content: center;position: fixed; z-index: 9999;';
@@ -190,7 +190,7 @@ function modalButton(url){
             <div id="successModal" onclick="this.parentNode.remove()">
 
               <h1> ${data.message} </h1>
-              <h1 style="margin-top: 0;"> ${data.username}</h1>
+              <h1 style="margin-top: 0;"> ${ data.username || '' }</h1>
 
               <button style="width: 99px;height: 29px;color:white; background-color:black;margin-top: 8px;font-size: 19px;">ok</button>
             
@@ -205,7 +205,7 @@ function modalButton(url){
     }
 
   
-}
+
 
 </script>
 

@@ -1,19 +1,13 @@
 
 
 
- <div id="comments_container"></div>
+{% include "mainApp/commentsList.html" %}
 
- {% include "mainApp/commentsList.html" %}
-
- <form id="commentForm" >
-
-    <br><textarea name="comment_text" id="comment_ta" maxlength="400"></textarea>
+    <br><textarea id="comment_ta" maxlength="400"></textarea>
 
     <br><button id="postComment_button"  onclick=" postComment ( this ) " 
         > post
     </button>
-
-</form>
 
 <script>
 
@@ -31,43 +25,55 @@ function postComment ( el ) {
         return
     }
 
+    if ( comment_ta.value == '' ) {
+
+        open_succeessModal ( { 'message':"Can't post blank comment"})
+        return
+    }
+
     // get drinkId //
-    const drinkId= new URLSearchParams( window.location.search ).get('id');
+    const drinkId = new URLSearchParams( window.location.search ).get('id');
 
-    // get comment text //
-    // const comment_text = comment_ta.value;
+    add_loadingSpinner_forButton ( el )
 
-    // update UI //
-    // paint_likeButtons();
-    
+    // POST //
 
-    // update db //
-
-    const body = new FormData(commentForm);
-    body.append ( 'drinkId' , drinkId )
+    const body = { 'drinkId':drinkId , 'commentText':comment_ta.value };
 
     fetch ( 'postComment/' , {
 
         method: 'POST',
         headers: { "X-CSRFToken":  getCookie('csrftoken') },
         
-        body: body,
+        body: JSON.stringify( body ),
     }) 
-    .then((response) => {
-        console.log(response);
+    .then((response) => response.json())
+    .then((data) => {
 
-    
+        document.querySelector('#comments_container').innerHTML = data.commentList_HTML
+        comment_ta.value = '' ;
+
+        remove_loadingSpinner_forButton();
     })
+
     //  handle server error //
 
     .catch( (error) => {
-        console.log( String(error) );
+        
         alert('500 internal server error')
-
         location.reload();
     });
 
 }
+
+function getComments ( drinkId ) {
+
+    fetch ( `getComments?drinkId=${ drinkId }`)
+    .then( ( response ) => response.text() )
+    
+    .then( ( text ) =>  document.querySelector('#comments_container').innerHTML = text);
+}
+
 </script>
 
 <style>

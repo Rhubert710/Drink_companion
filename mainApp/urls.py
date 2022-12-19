@@ -11,6 +11,7 @@ urlpatterns = [
     path('profilePage', views.index, name='profilePage'),
     path('likeDrink/', views.likeDrink, name='likeDrink'),
     path('postComment/', views.postComment, name='postComment'),
+    path('getComments', views.getComments, name='getComments'),
     path('login/', views.login, name='login'),
     path('logout', views.logout, name='logout'),
     path('createAccount/', views.createAccount, name='createAccount'),

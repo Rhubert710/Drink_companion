@@ -1,25 +1,29 @@
 
 
 
-{% for comment in comments%}
-<div class="comment_card">
 
-    <div class="comment_username">Robert</div>
-    <div class="comment_text">ffguiuvcdjbvceetujjffguiuvcdjbvceetujj</div>
+ <div id="comments_container">
+ 
+ {% for comment in comments%}
+    <div class="comment_card">
 
-    <div class="comment_date">{{ comment.pub_date }}</div>
+        <div class="comment_username">{{ comment.user }}</div>
+        <div class="comment_text"> {{ comment.text }} </div>
+
+        <div class="comment_date">{{ comment.pub_date }}</div>
+    </div>
+
+
+    {% endfor %}
+    <div class="comment_card">
+
+        <div class="comment_username">Robert</div>
+        <div class="comment_text">ffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujj</div>
+
+        <div class="comment_date">thu 10/19 11:11r</div>
+    </div>
+
 </div>
-
-
-{% endfor %}
-<div class="comment_card">
-
-    <div class="comment_username">Robert</div>
-    <div class="comment_text">ffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujjffguiuvcdjbvceetujj</div>
-
-    <div class="comment_date">thu 10/19 11:11r</div>
-</div>
-
 <style>
 
 
