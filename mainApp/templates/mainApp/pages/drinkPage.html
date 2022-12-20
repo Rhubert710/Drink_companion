@@ -7,7 +7,7 @@
 <!-- drink-page -->
     <div id="drinkPage" class="page" data-page="/drink"><br>
 
-        <input id="search-bar" type="text" placeholder="search....">
+        {% include "mainApp/searchBar.html" %}
         <br><br><!--search bar-->
         
         <!-- img -->
@@ -43,6 +43,9 @@
     </div>
 
     <script>
+
+    // add placeholder value to drinkpage search bars only
+    document.querySelector('#drinkPage .search-bar').setAttribute( 'placeholder' , 'search....')
 
     function update_drinkPage(){
 
@@ -118,4 +121,10 @@
             
         }
 
+        /* #drinkPage .search-bar::placeholder {
+
+            font-style: italic;
+            opacity: .4;
+
+        } */
     </style>
