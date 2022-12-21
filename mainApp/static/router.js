@@ -39,6 +39,9 @@ const populatePage = {
     
     // populatePage[newPage]() || populatePage['default']();
     populatePage[newPage]();
+
+    // clear search-bar
+    $( '.search-bar' ).forEach( bar => bar.value = '' );
   
     setTimeout(()=>{
   

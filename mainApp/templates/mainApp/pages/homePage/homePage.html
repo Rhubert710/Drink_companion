@@ -1,5 +1,6 @@
 <!-- PAGE - homePage -->
 <div id="homePage" class="page" data-page="/">
+  
   <!-- logo -->
   <div id="mainLogo">
     <img src="static/drinks_background_blur.png" alt="" id="bg_img" />
@@ -9,13 +10,13 @@
   <h1>Drink Companion</h1>
 
   <!-- search bar -->
-  {% include "mainApp/searchBar.html" %}
+  {% include "mainApp/components/searchBar.html" %}
 
   <!-- Top Drinks -->
-  {% include "mainApp/topDrinks.html" %}
+  {% include "mainApp/pages/homePage/components/topDrinks.html" %}
 
   <!-- All Drinks -->
-  {% include "mainApp/drink_list.html" %}
+  {% include "mainApp/pages/homePage/components/drink_list.html" %}
 </div>
 
 <script>

@@ -65,7 +65,7 @@ def postComment(request):
     comments = Comment.objects.filter( drinkId= body['drinkId'] )
 
     # render template to string
-    redered_commentsList = render_to_string( 'mainApp/commentsList.html' , { 'comments' : comments } )
+    redered_commentsList = render_to_string( 'mainApp/pages/drinkPage/components/commentsList.html' , { 'comments' : comments } )
     
     return JsonResponse ( { 'commentList_HTML' : redered_commentsList } )
 
@@ -77,7 +77,7 @@ def getComments(request):
     comments = Comment.objects.filter( drinkId= drinkId )
 
     # render template to string
-    redered_commentsList = render_to_string( 'mainApp/commentsList.html' ,  { 'comments' : comments } )
+    redered_commentsList = render_to_string( 'mainApp/pages/drinkPage/components/commentsList.html' ,  { 'comments' : comments } )
     
     return HttpResponse ( redered_commentsList  )
 

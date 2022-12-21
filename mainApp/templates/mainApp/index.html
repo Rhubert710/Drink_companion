@@ -17,24 +17,28 @@
 
     <div id="app">
 
+      
+      
+      
+      
       <!-- header -->
-      {% include "mainApp/header.html" %}
+      {% include "mainApp/components/header/header.html" %}
 
 
         <!-- router -->
         <div id="page_container">
 
           <!-- home page -->
-          {% include "mainApp/pages/homePage.html" with display='flex' %}
+          {% include "mainApp/pages/homePage/homePage.html" with display='flex' %}
 
           <!-- drink page -->
-          {% include "mainApp/pages/drinkPage.html" %}
+          {% include "mainApp/pages/drinkPage/drinkPage.html" %}
 
           <!-- browse page -->
-          {% include "mainApp/pages/browsePage.html" %}
+          {% include "mainApp/pages/browsePage/browsePage.html" %}
 
           <!-- profile page -->
-          {% include "mainApp/pages/profilePage.html" %}
+          {% include "mainApp/pages/profilePage/profilePage.html" %}
 
 
         </div>
@@ -42,7 +46,7 @@
     </div>
 
     <!-- Login Modal -->
-    {% include "mainApp/loginModal.html" %}
+    {% include "mainApp/components/loginModal.html" %}
     
 </body>
 </html>
