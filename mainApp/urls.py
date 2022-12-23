@@ -16,7 +16,9 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('createAccount/', views.createAccount, name='createAccount'),
     
-
-    # path('<slug>', views.index, name='index'),
-    
 ]
+
+
+
+
+handler404 = handler500 = 'mainApp.views.index'

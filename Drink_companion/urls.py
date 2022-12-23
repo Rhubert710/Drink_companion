@@ -20,3 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mainApp.urls')),
 ]
+
+handler404 = handler500 = 'mainApp.views.index'
