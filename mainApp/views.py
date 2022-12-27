@@ -134,7 +134,7 @@ def login (request):
     else:
         return JsonResponse({
             'successful' : 'false',
-            'message' : 'user doesnt exist',
+            'message' : 'User doesnt exist',
             })
 
 

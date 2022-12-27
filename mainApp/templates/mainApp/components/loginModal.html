@@ -11,7 +11,8 @@
     <div class='login-input-title'>username:</div>
     <input type="text" id="username_input" class="login-input" maxlength="14"/>
     <div class='login-input-title'>password</div>
-    <input type="password" id="password_input" class="login-input" maxlength="14" />
+    <input type="password" id="password_input" class="login-input" maxlength="14" 
+      onkeyup=" if (event.key === 'Enter')  loginModal_button.click() "/>
 
     <!-- phrase -->
     <div style="align-self:flex-end; margin-right:10%;margin-bottom:29px">
@@ -67,6 +68,7 @@
     ] = option[loginModal_state];
 
     loginModal_button.setAttribute('onclick', `modalButton('${loginModal_state}/')` );
+
 
     //clear error message
     loginModal.classList.remove('has_alert'); modalAlert.innerText = '';
@@ -155,6 +157,7 @@ function modalButton(url){
 
       }
       else{
+        
         handle_error(data.message);
       }
      
@@ -182,7 +185,7 @@ function modalButton(url){
       
       let successModal = document.createElement('div');
 
-      successModal.style = 'height:100vh; width:100vw; display: flex;flex-direction: column;align-items: center;justify-content: center;position: fixed; z-index: 9999;';
+      successModal.style = 'height:100%; width:100vw; max-width: 1400px; display: flex;flex-direction: column;align-items: center;justify-content: center;position: absolute; z-index: 9999;';
       successModal.id = "successModal_container"
       
       successModal.innerHTML = `
@@ -213,7 +216,7 @@ function modalButton(url){
 
 #successModal{
 
-  position: fixed;
+  /* position: fixed; */
   width: 470px;
   height: 250px;
   background-color: white;

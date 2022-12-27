@@ -35,7 +35,7 @@ function populate_browsePage(){
         // add drink
         const drinkDiv = document.createElement("div");
 
-        drinkDiv.classList.add('l-card');
+        drinkDiv.classList.add('a-card');
         drinkDiv.onclick = ()=> navigate_to( `drink?id=${drink.idDrink}` , event);
 
         drinkDiv.innerHTML = `
@@ -84,7 +84,21 @@ function populate_browsePage(){
     #browseResults .a-card{
 
         width: 400px;
-
+        animation: slide_right 1s;
         }
+
+@keyframes slide_right {
+  from {
+    
+    transform: translateX(-100%);
+     opacity: 0;
+
+  }
+
+  to {
+    transform: translate(0%);
+    opacity: 1;
+  }
+}
 
 </style>
