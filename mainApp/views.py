@@ -87,24 +87,28 @@ def createAccount(request):
     # body as dict ()
     body = ast.literal_eval(request.body.decode('"UTF-8"'))
 
-    user = authenticate( request, username=body['username'], password=body['password'] )
+    user = User.objects.filter ( username = body['username'] )
     
-    if user is None:
-        
+    if user:
+        return JsonResponse({
+            'successful' : 'false',
+            'message' : 'An account with that username already exists',
+            })
+
+    else:
+        #create user
+
         user = User.objects.create_user( username=body['username'], password=body['password'] )
         auth_login(request, user)
 
         return JsonResponse({
             'successful' : 'true',
+            
+            
             'message' : 'Welcome',
             'username' : user.get_username(),
-            'session' : user.get_session_auth_hash(),
-            })
 
-    else:
-        return JsonResponse({
-            'successful' : 'false',
-            'message' : 'An account with that username already exists',
+            'session' : user.get_session_auth_hash(),
             })
 
 
@@ -114,10 +118,29 @@ def login (request):
     # body as dict ()
     body = ast.literal_eval(request.body.decode('"UTF-8"'))
 
-    user = user = authenticate( request, username=body['username'], password=body['password'] )
+    # check if user exists
+    user = User.objects.filter ( username = body['username'] )
 
-    if user is not None:
+    if not user:
 
+        return JsonResponse({
+            'successful' : 'false',
+            'message' : 'User does not exist',
+            })
+
+    # authenticate
+    user = authenticate( request, username=body['username'], password=body['password'] )
+
+    if user is None:
+
+        return JsonResponse({
+            'successful' : 'false',
+            'message' : 'Incorrect Password',
+            })
+        
+    else:
+
+        #login
         auth_login(request, user)
         
         likedList , dislikedList = get_liked_lists ( user )
@@ -129,12 +152,6 @@ def login (request):
             'session' : user.get_session_auth_hash(),
             'likedDrinks' : likedList,
             'dislikedDrinks' : dislikedList,
-            })
-
-    else:
-        return JsonResponse({
-            'successful' : 'false',
-            'message' : 'User doesnt exist',
             })
 
 
