@@ -10,6 +10,9 @@
         {% include "mainApp/components/searchBar.html" %}
         <br><br><!--search bar-->
         
+
+        <div id="drinkPage_container">
+
         <!-- img -->
         <img id="drinkPage_img" src="https://www.thecocktaildb.com/images/media/drink/b522ek1521761610.jpg" alt="drink-image">
 
@@ -23,7 +26,7 @@
         <h1 id="drinkPage_drinkName">Drink Name</h1>
 
         <!-- info container -->
-        <div id="drinkPage_container">
+        
 
             <div class='drinkPage_data'>Ingredients:
                 <span id='drinkPage_ingredients'></span> </div>
@@ -80,14 +83,19 @@
             /* width: 400px; */
         }
         #drinkPage_img{
-            width:400px;
+
+            max-width:400px;
             aspect-ratio: 1;
+
+            width: 100%;
+            align-self: center;
         }
 
         #like_buttons{
-            width:400px;
+            width:100%;
+            align-self: center;
+            max-width: 400px;
             display: flex;
-
             justify-content: end;
             margin-top: 5px;
         }
