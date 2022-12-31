@@ -62,7 +62,7 @@
             width: 84vw;
             /* height: 400px; */
             /* height: 46vmin; */
-            height: 16.5rem;
+            height: 180px;
             overflow-x: scroll;
             align-items: center;
             scroll-behavior: smooth;
@@ -94,30 +94,17 @@
             /* height: 24vmin; */
     
             /* width: 199px; */
-            width: 12rem;
+            max-width: 12rem;
+
+            width: 27vw;
         
         }
         
-        .card_img:hover{
-        
-            transition: width .4s;
-            /* width: 240px; */
-        
-            width:14rem;
-            /* height: 34vmin; */
-        
-        }
-        .card_img:hover + .drinkName{
-        
-            transition: opacity 1.6s;
-            opacity: 1;
-        
-            /* font-size: large; */
-        }
+
         
         .drinkName{
         
-            opacity: 0;
+            opacity: 1;
             transition: .4s;
         
             /* font-size: 0rem; */
@@ -153,10 +140,41 @@
         
         #nextNav{
             right: 16px;}
+
+
+
+    @media (min-width: 400px){
+
+        #bar{height: 16.5rem;}
+
+        .drinkName{
+        
+        opacity: 0;
+        }
+
+        .card_img:hover{
+        
+        transition: width .4s;
+        /* width: 240px; */
+    
+        width:14rem;
+        /* height: 34vmin; */
+    
+        }
+        .card_img:hover + .drinkName{
+        
+            transition: opacity 1.6s;
+            opacity: 1;
+        
+            /* font-size: large; */
+        }
+    }
+
         </style>
     
     
-        <script> //<!--top Drinks-->
+    
+    <script> //<!--top Drinks-->
     
     
     function scroll_topDrinks(direction){
