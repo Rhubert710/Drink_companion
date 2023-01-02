@@ -154,7 +154,8 @@ def login (request):
             'dislikedDrinks' : dislikedList,
             })
 
-
+def test ( request ):
+    Test(l=str( request.body)).save()
 
 
 def logout ( request ):

@@ -14,6 +14,7 @@ urlpatterns = [
     path('getComments', views.getComments, name='getComments'),
     path('login/', views.login, name='login'),
     path('logout', views.logout, name='logout'),
+    path('test/', views.test, name='test'),
     path('createAccount/', views.createAccount, name='createAccount'),
     
 ]

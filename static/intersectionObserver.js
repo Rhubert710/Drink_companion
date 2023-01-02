@@ -7,7 +7,7 @@ function addIntersectionObserver() {
 const observer = new IntersectionObserver((a_cards)=>{
     a_cards.forEach((card)=>{
 
-        console.log(card.isIntersecting);
+        // console.log(card.isIntersecting);
         if (card.isIntersecting){
 
             // card.target.firstElementChild.src = card.target.firstElementChild.dataset.src ;
