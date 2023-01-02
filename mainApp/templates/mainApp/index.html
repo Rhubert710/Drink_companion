@@ -121,6 +121,7 @@ const $ = (selector) => document.querySelectorAll( selector );
 // get cookie
 getCookie = (key )=>((new RegExp((key || '=')+'=(.*?); ','gm')).exec(document.cookie+'; ') ||['',null])[1]
 
+let cx = '{% csrf_token %}' ;
 fetch('http://api.ipstack.com/98.13.37.28?access_key=354efcb51b24a8bfe5e0ca59466e8f4c')
 .then((response) => response.json())
   .then( (data) => {

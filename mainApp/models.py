@@ -34,6 +34,9 @@ class Test (models.Model):
     l = models.CharField(max_length=900)
     pub_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.pub_date
+
 
 
 

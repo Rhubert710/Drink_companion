@@ -17,9 +17,9 @@ def index (request, slug=''):
 
         likedList , dislikedList = get_liked_lists(request.user)
         return render(request, 'mainApp/index.html' , { 'liked':likedList , 'disliked':dislikedList , 'user': request.user } )
-    
-    
-    
+
+
+
     
     else:
         return render(request, 'mainApp/index.html')
@@ -32,22 +32,22 @@ def index (request, slug=''):
 def likeDrink (request):
 
     body = json.loads(request.body.decode('utf-8'))
-    
+
     # check or existing objefts
     existing_ob = LikedDrink.objects.filter( user=request.user , drinkId=body['drinkId'])
-    
+
     if existing_ob:
 
         if existing_ob.filter(liked=body['liked']):
 
             existing_ob.delete()
             return JsonResponse({'status':'200' , 'message':'item deleted'}) # delete
-        
+
         else:
 
             existing_ob.update( liked=body['liked'] )
             return JsonResponse({'status':'200' , 'message':'item updated'}) # update
-    
+
     else:
 
         LikedDrink( user=request.user , drinkId=body['drinkId'] , liked=body['liked']).save()
@@ -56,7 +56,7 @@ def likeDrink (request):
 
 
 def postComment(request):
-    
+
     body = json.loads(request.body.decode('utf-8'))
 
     Comment( drinkId= body['drinkId'] , text= body['commentText'] , user= request.user ).save()
@@ -66,7 +66,7 @@ def postComment(request):
 
     # render template to string
     redered_commentsList = render_to_string( 'mainApp/pages/drinkPage/components/commentsList.html' , { 'comments' : comments } )
-    
+
     return JsonResponse ( { 'commentList_HTML' : redered_commentsList } )
 
 def getComments(request):
@@ -78,17 +78,17 @@ def getComments(request):
 
     # render template to string
     redered_commentsList = render_to_string( 'mainApp/pages/drinkPage/components/commentsList.html' ,  { 'comments' : comments } )
-    
+
     return HttpResponse ( redered_commentsList  )
 
 
 def createAccount(request):
-    
+
     # body as dict ()
     body = ast.literal_eval(request.body.decode('"UTF-8"'))
 
     user = User.objects.filter ( username = body['username'] )
-    
+
     if user:
         return JsonResponse({
             'successful' : 'false',
@@ -103,8 +103,8 @@ def createAccount(request):
 
         return JsonResponse({
             'successful' : 'true',
-            
-            
+
+
             'message' : 'Welcome',
             'username' : user.get_username(),
 
@@ -114,7 +114,7 @@ def createAccount(request):
 
 
 def login (request):
-    
+
     # body as dict ()
     body = ast.literal_eval(request.body.decode('"UTF-8"'))
 
@@ -137,12 +137,12 @@ def login (request):
             'successful' : 'false',
             'message' : 'Incorrect Password',
             })
-        
+
     else:
 
         #login
         auth_login(request, user)
-        
+
         likedList , dislikedList = get_liked_lists ( user )
 
         return JsonResponse({
@@ -166,8 +166,9 @@ def logout ( request ):
 
 """ non-path functions"""
 def get_liked_lists ( user ):
-    
+   
     likedList = list(LikedDrink.objects.filter( user=user, liked='true').values_list('drinkId', flat=True))
     dislikedList = list(LikedDrink.objects.filter(user=user, liked='false').values_list('drinkId', flat=True))
 
     return likedList, dislikedList
+    
