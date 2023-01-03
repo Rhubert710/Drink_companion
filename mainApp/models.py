@@ -28,6 +28,9 @@ class Comment (models.Model):
     text = models.CharField(max_length=401)
     pub_date = models.DateTimeField(auto_now_add=True)
     
+    def __str__(self):
+        return 'Comment by ' + self.user
+
 
 class Test (models.Model):
 
