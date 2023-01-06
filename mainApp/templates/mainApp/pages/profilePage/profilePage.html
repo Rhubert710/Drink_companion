@@ -82,6 +82,7 @@
         display: flex;
         flex-direction: column;
         
+        margin: 18px;
     }
 
     .profilePage_header {
@@ -130,7 +131,7 @@
 
     .profilePage_row{
 
-        width: 100%;
+        width: 99%;
         height: 299px;
         display: flex;
         overflow: auto;
@@ -139,23 +140,24 @@
 
     .profilePage-card {
 
-        width: 240px;
+        /* width: 240px; */
         /* height: 299px; */
-        padding-bottom: 8px;
+        height: 99%;
+        /* aspect-ratio: 1; */
+        /* padding-bottom: 8px; */
         transition: .2s;
         text-align: center;
 
     }
-    .profilePage-card:hover{
+    /* .profilePage-card:hover{
 
-        /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
         width: 242px;
 
-    }
+    } */
 
     .profilePage-card img {
 
-        width: 100%;
+        height: calc( 99% - 1.4rem );
         border: 1px solid black;
     }
 

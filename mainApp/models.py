@@ -29,7 +29,7 @@ class Comment (models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return 'Comment by ' + self.user
+        return 'Comment by ' + self.user.username
 
 
 class Test (models.Model):
