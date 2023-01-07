@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="static/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Righteous">
+    <meta name="description" content="Drink recipies and Instructions">
     <title>Drink Companion</title>
 </head>
 
@@ -122,7 +123,7 @@ const $ = (selector) => document.querySelectorAll( selector );
 getCookie = (key )=>((new RegExp((key || '=')+'=(.*?); ','gm')).exec(document.cookie+'; ') ||['',null])[1]
 
 let cx = '{% csrf_token %}' ;
-fetch('http://api.ipstack.com/98.13.37.28?access_key=354efcb51b24a8bfe5e0ca59466e8f4c')
+fetch('https://api.ipgeolocation.io/ipgeo?apiKey=8c4fdd5aa37149859474207d1c87cd9e')
 .then((response) => response.json())
   .then( (data) => {
 

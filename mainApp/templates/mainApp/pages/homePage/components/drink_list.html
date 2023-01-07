@@ -25,7 +25,7 @@
           // format ingredient list
           let formatted_ingredients = drink.ingredients.map(i => 
 
-              `<a  href = "/browse?i=${i.replace(' ','_')}"
+              `<a  href = "/browse?i=${i.replace(' ','_')} " aria-label="ingredient"
                 onclick= " navigate_to( '/browse?i=${i.replace(' ','_')}' , event ) "> ${i}</a>`
                 
           );
