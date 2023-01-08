@@ -21,5 +21,4 @@ urlpatterns = [
 
 
 
-
-handler404 = handler500 = 'mainApp.views.index'
+# handler404 = handler500 = 'mainApp.views.index'
