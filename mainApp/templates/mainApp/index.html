@@ -123,7 +123,7 @@ const $ = (selector) => document.querySelectorAll( selector );
 getCookie = (key )=>((new RegExp((key || '=')+'=(.*?); ','gm')).exec(document.cookie+'; ') ||['',null])[1]
 
 let cx = '{% csrf_token %}' ;
-fetch('https://api.ipgeolocation.io/ipgeo?apiKey=8c4fdd5aa37149859474207d1c87cd9e')
+fetch('https://ipgeolocation.abstractapi.com/v1/?api_key=59131ffb1ba149f7858d5469f85835ac')
 .then((response) => response.json())
   .then( (data) => {
 
