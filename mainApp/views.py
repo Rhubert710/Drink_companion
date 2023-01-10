@@ -157,6 +157,8 @@ def login (request):
 def test ( request ):
     Test(l=str( request.body)).save()
 
+    return JsonResponse({'status':'200'})
+
 
 def logout ( request ):
 
